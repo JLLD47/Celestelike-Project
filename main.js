@@ -7,6 +7,10 @@ var right = false;
 var left = false;
 var jump = false
 var jump_frames = 0;
+var dash = false;
+var dash_frames = 0;
+var dash_speed = 10;
+
 
 console.log('hola')
 window.addEventListener('keydown', function(e) {
@@ -17,8 +21,11 @@ window.addEventListener('keydown', function(e) {
     if(e.key === 'd'){
         right = true;
     }
-    if(e.key === ' '){
+    if(e.key === ' ' || e.key === 'l'){
         jump = true;
+    }
+    if(e.key === 'k'){
+        dash = true;
     }
 })
 
@@ -34,13 +41,40 @@ window.addEventListener('keyup', function(e) {
 var TimerId = setInterval(update_move, 10);
 
 function update_move(){
-    if(jump) update_jump()
+    if(jump){
+        update_jump();
+        gravity = 2
+    }
+
+    if(dash){
+        update_dash()
+        gravity = 0;
+    }
+
+    if(!dash && !jump){
+        gravity = 5
+    }
+
+    if(left){
+        if(dash){
+            x_position -= 2 * dash_speed;
+        }
+        else{
+            x_position -= 2
+        }
+    }
+    if(right){
+        if(dash){
+            x_position += 2 * dash_speed;
+        }
+        else{
+            x_position += 2;
+        }
+    }
+ 
     if(y_position < 570) y_position += gravity;
-    if(left) x_position -= 2;
-    if(right) x_position += 2;
     character.style.left = x_position + "px";
     character.style.top =  y_position + "px";
-
 }
 
 function update_jump(){
@@ -49,5 +83,13 @@ function update_jump(){
     if(jump_frames >= 10){
         jump = false;
         jump_frames = 0;
+    }
+}
+
+function update_dash(){
+    dash_frames += 1;
+    if(dash_frames >= 5){
+        dash = false;
+        dash_frames = 0;
     }
 }
