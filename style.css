@@ -1,0 +1,15 @@
+#board{
+    width: 600px;
+    height: 600px;
+    position: relative;
+    background-color: black;
+}
+
+#character{
+    width: 30px;
+    height: 30px;
+    position:absolute;
+    background-color: blue;
+    top: 570px;
+    left: 285px;
+}
