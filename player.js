@@ -1,8 +1,13 @@
 var character = document.getElementById('character');
 
-var gravity = 5
+var charWidth = Number(character.style.width.replace("px","") );
+var charHeight = Number(character.style.height.replace("px","") );
+
+
+
+var gravity = 5;
 var x_position = 285;
-var y_position = 540;
+var y_position = 500;
 
 var right = false;
 var left = false;
@@ -18,7 +23,7 @@ var dash_speed = 10;
 
 var is_jumping = false;
 var is_dashing = false;
-var is_on_floor = true;
+var is_on_floor = false;
 
 var can_jump = true;
 var can_dash = true;
@@ -121,8 +126,8 @@ function update_move(){
     }
 
 
-    if(y_position < 540) y_position += gravity;
-    if(y_position >= 540) y_position = 540;
+    if(!is_on_floor) y_position += gravity;
+    if(is_on_floor) y_position = floorPosition;
     player.x = x_position;
     player.y = y_position;
     character.style.left = x_position + "px";
@@ -148,14 +153,10 @@ function update_dash(){
 }
 
 function check_status(){
-    if(y_position <540){
-        is_on_floor = false
+    if(!is_on_floor){
         can_jump = false
     }
-    if(y_position >= 540){
-        is_on_floor = true
-    }
-
+    
     if(is_on_floor){
         is_jumping = false;
         can_jump = true;
