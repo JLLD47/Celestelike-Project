@@ -13,3 +13,21 @@
     top: 570px;
     left: 285px;
 }
+
+.platform{
+    position: absolute;
+    background-color: blueviolet;
+    height: 30px;
+    top: 570px;
+}
+
+#p_1{
+    width: 300px;
+    left: 0px;
+}
+
+#p_2{
+    width: 200px;
+    left: 400px;
+}
+
