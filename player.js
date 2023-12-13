@@ -1,20 +1,19 @@
 var character = document.getElementById('character');
-
-var charWidth = Number(character.style.width.replace("px","") );
-var charHeight = Number(character.style.height.replace("px","") );
-
-
+var charStyle = getComputedStyle(character);
+var charWidth = Number(charStyle.width.replace("px", ""));
+var charHeight = Number(charStyle.height.replace("px", ""));
 
 var gravity = 5;
 var xPosition = 285;
 var yPosition = 200;
+var spawnX = 100
+var spawnY = 400
 
 var right = false;
 var left = false;
-var last_facing = "right";
-
 var up = false;
 var down = false;
+var last_facing = "right";
 
 var jumpFrames = 0;
 
@@ -27,13 +26,6 @@ var isOnFloor = false;
 
 var canJump = true;
 var canDash = true;
-
-var player = {
-    x: xPosition,
-    y: yPosition
-}
-
-
 
 window.addEventListener('keydown', function(e) {
     console.log(e.key)
@@ -53,6 +45,7 @@ window.addEventListener('keydown', function(e) {
     }
 
     if((e.key === ' ' || e.key === 'l') && canJump){
+        isOnFloor = false;
         isJumping = true;
     }
     if((e.key === 'k') && canDash){
@@ -125,14 +118,20 @@ function updateMove(){
         }
     }
 
-
-    if(!isOnFloor) yPosition += gravity;
-    if(isOnFloor) yPosition = floorPosition;
-    player.x = xPosition;
-    player.y = yPosition;
+    yPosition += gravity;
+    
+    checkMovement()
+    if(isOnFloor && yPosition >= floorPosition - charHeight){
+        yPosition = floorPosition - charHeight;
+    }
+    if(yPosition + charHeight >= 600){
+        dead()
+    }
+    
     character.style.left = xPosition + "px";
     character.style.top =  yPosition + "px";
     checkStatus();
+   
 }
 
 function updateJump(){
@@ -175,3 +174,17 @@ function checkStatus(){
     }
 }
 
+function dead(){
+    prompt.innerText = "Game Over";
+    spawn()
+    var TimerId2 = setTimeout(clearDead,  1000)
+}
+
+function clearDead(){
+    prompt.innerText = "";
+}
+
+function spawn(){
+    xPosition = spawnX;
+    yPosition = spawnY;
+}

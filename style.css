@@ -31,3 +31,9 @@
     left: 400px;
 }
 
+#game{
+    position: absolute;
+    color: red;
+    top: 300px;
+    left: 300px;
+}
