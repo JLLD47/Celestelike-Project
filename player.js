@@ -23,12 +23,12 @@ var dash_speed = 10;
 var isJumping = false;
 var isDashing = false;
 var isOnFloor = false;
+var isOnWall = false;
 
 var canJump = true;
 var canDash = true;
 
 window.addEventListener('keydown', function(e) {
-    console.log(e.key)
     if(e.key === 'a'){
         left = true;
         last_facing = "left";
@@ -127,7 +127,9 @@ function updateMove(){
     if(yPosition + charHeight >= 600){
         dead()
     }
-    
+    if(isOnWall){
+        xPosition = wallPosition;
+    }
     character.style.left = xPosition + "px";
     character.style.top =  yPosition + "px";
     checkStatus();
@@ -157,7 +159,6 @@ function checkStatus(){
     }
     
     if(isOnFloor){
-        isJumping = false;
         canJump = true;
 
         if(!isDashing){
