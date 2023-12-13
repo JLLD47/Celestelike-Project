@@ -16,11 +16,12 @@ function checkCollisions(){
         var pRight = pLeft + Number(platforms[i].style.width.replace("px",""))
         var pTop = Number(platforms[i].style.top.replace("px",""))
         var pBot = pTop + Number(platforms[i].style.height.replace("px",""))
+
         
-        if ( x_position < pRight && 
-            y_position < pBot &&
-            x_position + charWidth > pLeft &&
-            y_position + charHeight > pTop) {
+        if ( xPosition < pRight && 
+            yPosition < pBot &&
+            xPosition + charWidth > pLeft &&
+            yPosition + charHeight > pTop) {
                 floorPosition = Number(platforms[i].style.top.replace("px",""))
                 return true
 
@@ -30,4 +31,6 @@ function checkCollisions(){
             }
     }
 }
+
+
 var timerId = setInterval(checkMovement, 10);
