@@ -4,49 +4,60 @@ var charStyle = getComputedStyle(character); /*Gets an object from we can read t
 var charWidth = Number(charStyle.width.replace("px", "")); /*Gets character width to use in calculations*/
 var charHeight = Number(charStyle.height.replace("px", "")); /*Gets character height to use in calculations*/
 
-var gravity = 6; /*Gravity value, substracted every update*/
-var gravDefault = 6; /*Default gravity value*/
-var gravJump = 2; /*Gravity value during jump*/
-var gravDash = 0; /*Gravity value during dash */
-var gravWall = 1; /*Gravity value while grabing a wall*/
+/*Gravity values*/
+let gravity = 6; /*Gravity value, substracted every update*/
+const gravDefault = 6; /*Default gravity value*/
+const gravJump = 2; /*Gravity value during jump*/
+const gravDash = 0; /*Gravity value during dash */
+const gravWall = 1; /*Gravity value while grabing a wall*/
 
+/*Player position*/
 var spawnX = 60; /*X position of player respawn, from the left of the screen*/
 var spawnY = 400; /*Y position of player respawn, from the Top of the screen*/
 var xPosition = spawnX; /*X position of the character, from the left of the screen*/
 var yPosition = spawnY; /*Y position of the character, from the top of the screen*/
 
-var right = false; /*Flag to check is right direction is pressed*/
-var left = false; /*Flag to check is left direction is pressed*/
-var up = false; /*Flag to check is up direction is pressed during a dash*/
-var down = false; /*Flag to check is right direction is pressed during a dash*/
-var lastFacing = "right"; /*Holds the direction in wich the character is looking, right for default*/
+/*Player directions*/
+let right = false; /*Flag to check is right direction is pressed*/
+let left = false; /*Flag to check is left direction is pressed*/
+let up = false; /*Flag to check is up direction is pressed during a dash*/
+let down = false; /*Flag to check is right direction is pressed during a dash*/
+let lastFacing = "right"; /*Holds the direction in wich the character is looking, right for default*/
 
-var movementSpeed = 3; /*Movement speed value*/
+/*Movement values*/
+const movementSpeed = 3; /*Movement speed value*/
 
-var jumpFrames = 0; /*Counts the time since jump started*/
-var maxJumpFrames = 10; /*Jump duration*/
-var jumpSpeed = 12; /*Jump distance*/
+ /*Jump values*/
+let jumpFrames = 0; /*Counts the time since jump started*/
+const maxJumpFrames = 10; /*Jump duration*/
+const jumpSpeed = 12; /*Jump distance*/
 
-var wallJumpFrames = 0; /*Counts the time since wall jump started*/
-var maxWallJumpFrames = 10; /*Wall jump duration*/
-var wallJumpSpeedY = 15; /*Wall jump y distance*/
-var wallJumpSpeedX = 2; /*Wall jump x distance*/
-var wallJumpDirection /*The direction for the wall jump*/
+ /*Wall jump values*/
+let wallJumpFrames = 0; /*Counts the time since wall jump started*/
+const maxWallJumpFrames = 10; /*Wall jump duration*/
+const wallJumpSpeedY = 15; /*Wall jump y distance*/
+const wallJumpSpeedX = 2; /*Wall jump x distance*/
+let wallJumpDirection /*The direction for the wall jump*/
 
-var dashFrames = 0; /*Counts time since dash started*/
-var dash_speed = 8; /*Dash distance*/
+ /*Dash values*/
+let dashFrames = 0; /*Counts time since dash started*/
+const dash_speed = 8; /*Dash distance*/
 
-var isJumping = false; /*Checks if player is jumping*/
-var isWallJumping = false; /*Checks if player is wall jumping*/
-var isDashing = false; /*Checks if player is dashing*/
-var isOnFloor = false; /*Checks if player is on the floor*/
-var isOnCeil = false; /*Checks if player is jumping against the ceiling*/
-var isOnWall = false; /*Checks if player is going against a wall*/
-var isWalking = false; /*Checks if player is walking*/
+/*Player status*/
+let isJumping = false; /*Checks if player is jumping*/
+let isWallJumping = false; /*Checks if player is wall jumping*/
+let isDashing = false; /*Checks if player is dashing*/
+let isOnFloor = false; /*Checks if player is on the floor*/
+let isOnCeil = false; /*Checks if player is jumping against the ceiling*/
+let isOnWall = false; /*Checks if player is going against a wall*/
+let isWalking = false; /*Checks if player is walking*/
 
-var canJump = true; /*Checks if player can jump*/
-var canWallJump = false; /*Checks if player can wall jump*/
-var canDash = true; /*Checks if player can dash*/
+let canJump = true; /*Checks if player can jump*/
+let canWallJump = false; /*Checks if player can wall jump*/
+let canDash = true; /*Checks if player can dash*/
+
+/*Timers*/
+let timerDash /*Controls time between jump and dash*/
 
 
 
@@ -71,10 +82,11 @@ window.addEventListener('keydown', function(e) {
         isOnFloor = false;
         isJumping = true;
         canDash = false;
-        var timerId3 = setTimeout(jumpDashWindow, 120)
+        timerDash = setTimeout(jumpDashWindow, 120)
     }
     if((e.key === ' ' || e.key === 'l') && canWallJump && !isJumping){
         isWallJumping = true;
+        timerDash = setTimeout(jumpDashWindow, 120)
     }
     if((e.key === 'k' || e.key === 'Shift') && canDash){
         isDashing = true;
@@ -103,7 +115,7 @@ window.addEventListener('keyup', function(e) {
 var TimerId = setInterval(updateMove, 10);
 
 
-
+/*Main game function*/
 function updateMove(){
 
     /*Modifies gravity based in wich movement is performed and calls special movement functions*/
@@ -208,9 +220,9 @@ function updateMove(){
         yPosition = ceilPosition
     }
 
-    /*Calls dead if player is falling to the bottom of game screen*/
+    /*Calls respawn and resets player position if player falls into the void*/
     if(yPosition >= 600){
-        dead()
+        respawn()
     }
     
     /*Calls animation function to change the sprite before aplying movement*/
@@ -226,6 +238,7 @@ function updateMove(){
    
 }
 
+/*Jump*/
 function updateJump(){
     jumpFrames += 1;
     yPosition -= jumpSpeed;
@@ -235,6 +248,7 @@ function updateJump(){
     }
 }
 
+/*Wall jump*/
 function updateWallJump(){
     wallJumpFrames += 1;
     yPosition -= wallJumpSpeedY;
@@ -250,6 +264,7 @@ function updateWallJump(){
     }
 }
 
+/*Dash*/
 function updateDash(){
     dashFrames += 1;
     if(dashFrames >= 5){
@@ -258,11 +273,8 @@ function updateDash(){
     }
 }
 
+/*Checks player status after movement*/
 function checkStatus(){
-    if(!isOnFloor){
-        canJump = false
-    }
-    
     if(isOnFloor){
         canJump = true;
 
@@ -270,7 +282,10 @@ function checkStatus(){
             canDash = true;
         }
     }
-
+    else{
+        canJump = false
+    }
+    
     if((left || right) && isOnFloor){
         isWalking = true;
     }
@@ -294,21 +309,13 @@ function checkStatus(){
     }
 }
 
-function dead(){
-    prompt.innerText = "Game Over";
-    spawn()
-    var TimerId2 = setTimeout(clearDead,  1000)
-}
-
-function clearDead(){
-    prompt.innerText = "";
-}
-
-function spawn(){
+/*Resets player position to the level spawn*/
+function respawn(){
     xPosition = spawnX;
     yPosition = spawnY;
 }
 
+/*Enables dash when some time is passed after the jump*/
 function jumpDashWindow(){
     canDash = true;
 }

@@ -1,12 +1,12 @@
-var platforms = document.getElementsByClassName("platforms")
-var prompt = document.getElementById("game")
-var floorPosition
-var ceilPosition
-var wallPosition
-var landed
-var crashed
-var topped
+const platforms = document.getElementsByClassName("platforms")
+let floorPosition /*Position of floor player is on*/
+let ceilPosition /*Position of ceil against wich the player collided*/
+let wallPosition /*Position of wall agains wich the player collided*/
+let landed /*Player is on floor*/
+let crashed /*Player is moving against a wall*/
+let topped /*Player is moving against a ceil*/
 
+/*Calls collision functions and checks player status*/
 function checkMovement(){
     landed = checkFloorCollisions();
     crashed = checkWallCollisions();
@@ -31,16 +31,16 @@ function checkMovement(){
     }
 }
 
-function checkFloorCollisions(){
-    
-    for (let i = 0; i < platforms.length; i++) {
-        var currentPlatform = getComputedStyle(platforms[i])
-        var pLeft = Number(currentPlatform.left.replace("px",""))
-        var pRight = pLeft + Number(currentPlatform.width.replace("px",""))
-        var pTop = Number(currentPlatform.top.replace("px",""))
-        var pBot = pTop + Number(currentPlatform.height.replace("px",""))
 
-        
+/*Checks if player is on the floor*/
+function checkFloorCollisions(){
+    for (let i = 0; i < platforms.length; i++) {
+        let currentPlatform = getComputedStyle(platforms[i])
+        let pLeft = Number(currentPlatform.left.replace("px",""))
+        let pRight = pLeft + Number(currentPlatform.width.replace("px",""))
+        let pTop = Number(currentPlatform.top.replace("px",""))
+        let pBot = pTop + Number(currentPlatform.height.replace("px",""))
+
         if ( xPosition < pRight && 
             yPosition < pBot &&
             xPosition + charWidth > pLeft &&
@@ -53,13 +53,15 @@ function checkFloorCollisions(){
     return false
 }
 
+
+/*Check if player is moving against a wall*/
 function checkWallCollisions(){
     for (let j = 0; j < platforms.length; j++) {
-        var currentPlatform = getComputedStyle(platforms[j])
-        var pLeft = Number(currentPlatform.left.replace("px",""))
-        var pRight = pLeft + Number(currentPlatform.width.replace("px",""))
-        var pTop = Number(currentPlatform.top.replace("px",""))
-        var pBot = pTop + Number(currentPlatform.height.replace("px",""))
+        let currentPlatform = getComputedStyle(platforms[j])
+        let pLeft = Number(currentPlatform.left.replace("px",""))
+        let pRight = pLeft + Number(currentPlatform.width.replace("px",""))
+        let pTop = Number(currentPlatform.top.replace("px",""))
+        let pBot = pTop + Number(currentPlatform.height.replace("px",""))
 
         if (xPosition < pRight && 
             yPosition < pBot &&
@@ -83,16 +85,15 @@ function checkWallCollisions(){
 }
 
 
+/*Checks if player is jumping or dashing against the ceil*/
 function checkCeilCollisions(){
-    
     for (let i = 0; i < platforms.length; i++) {
-        var currentPlatform = getComputedStyle(platforms[i])
-        var pLeft = Number(currentPlatform.left.replace("px",""))
-        var pRight = pLeft + Number(currentPlatform.width.replace("px",""))
-        var pTop = Number(currentPlatform.top.replace("px",""))
-        var pBot = pTop + Number(currentPlatform.height.replace("px",""))
+        let currentPlatform = getComputedStyle(platforms[i])
+        let pLeft = Number(currentPlatform.left.replace("px",""))
+        let pRight = pLeft + Number(currentPlatform.width.replace("px",""))
+        let pTop = Number(currentPlatform.top.replace("px",""))
+        let pBot = pTop + Number(currentPlatform.height.replace("px",""))
 
-        
         if ( xPosition < pRight && 
             yPosition < pBot &&
             xPosition + charWidth > pLeft &&

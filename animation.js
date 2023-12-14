@@ -1,16 +1,17 @@
-var walkArr = ["url('player_walk_1.png')", "url('player_walk_2.png')"];
-var walkArrIndex = 0;
-var walkIntervId
+const walkArr = ["url('player_walk_1.png')", "url('player_walk_2.png')"];
+let walkArrIndex = 0;
+let intervalWalk
 
+/*Sets player sprite according player status, and iterates through the animation set for the current state*/
 function animations(){
     if(isWalking){
-        if(!walkIntervId){
-            walkIntervId = setInterval(walkAnimation, 100);
+        if(!intervalWalk){
+            intervalWalk = setInterval(walkAnimation, 100);
         }
     }
     else if(!isWalking){
-        clearInterval(walkIntervId)
-        walkIntervId = null;
+        clearInterval(intervalWalk)
+        intervalWalk = null;
         character.style.backgroundImage = "url('player_stand_1.png')"
     }
 
