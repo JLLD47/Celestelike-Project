@@ -1,45 +1,64 @@
-var character = document.getElementById('character');
-var charStyle = getComputedStyle(character);
-var charWidth = Number(charStyle.width.replace("px", ""));
-var charHeight = Number(charStyle.height.replace("px", ""));
+var character = document.getElementById('character'); /*Gets the character div in html*/
+var charStyle = getComputedStyle(character); /*Gets an object from we can read the character atributtes*/
 
-var gravity = 5;
-var xPosition = 285;
-var yPosition = 200;
-var spawnX = 100
-var spawnY = 400
+var charWidth = Number(charStyle.width.replace("px", "")); /*Gets character width to use in calculations*/
+var charHeight = Number(charStyle.height.replace("px", "")); /*Gets character height to use in calculations*/
 
-var right = false;
-var left = false;
-var up = false;
-var down = false;
-var last_facing = "right";
+var gravity = 6; /*Gravity value, substracted every update*/
+var gravDefault = 6; /*Default gravity value*/
+var gravJump = 2; /*Gravity value during jump*/
+var gravDash = 0; /*Gravity value during dash */
+var gravWall = 1; /*Gravity value while grabing a wall*/
 
-var movementSpeed = 3;
+var spawnX = 60; /*X position of player respawn, from the left of the screen*/
+var spawnY = 400; /*Y position of player respawn, from the Top of the screen*/
+var xPosition = spawnX; /*X position of the character, from the left of the screen*/
+var yPosition = spawnY; /*Y position of the character, from the top of the screen*/
 
-var jumpFrames = 0;
-var maxJumpFrames = 10;
-var jumpSpeed = 12;
+var right = false; /*Flag to check is right direction is pressed*/
+var left = false; /*Flag to check is left direction is pressed*/
+var up = false; /*Flag to check is up direction is pressed during a dash*/
+var down = false; /*Flag to check is right direction is pressed during a dash*/
+var lastFacing = "right"; /*Holds the direction in wich the character is looking, right for default*/
 
-var dashFrames = 0;
-var dash_speed = 7;
+var movementSpeed = 3; /*Movement speed value*/
 
-var isJumping = false;
-var isDashing = false;
-var isOnFloor = false;
-var isOnWall = false;
+var jumpFrames = 0; /*Counts the time since jump started*/
+var maxJumpFrames = 10; /*Jump duration*/
+var jumpSpeed = 12; /*Jump distance*/
 
-var canJump = true;
-var canDash = true;
+var wallJumpFrames = 0; /*Counts the time since wall jump started*/
+var maxWallJumpFrames = 10; /*Wall jump duration*/
+var wallJumpSpeedY = 15; /*Wall jump y distance*/
+var wallJumpSpeedX = 2; /*Wall jump x distance*/
+var wallJumpDirection /*The direction for the wall jump*/
 
+var dashFrames = 0; /*Counts time since dash started*/
+var dash_speed = 8; /*Dash distance*/
+
+var isJumping = false; /*Checks if player is jumping*/
+var isWallJumping = false; /*Checks if player is wall jumping*/
+var isDashing = false; /*Checks if player is dashing*/
+var isOnFloor = false; /*Checks if player is on the floor*/
+var isOnCeil = false; /*Checks if player is jumping against the ceiling*/
+var isOnWall = false; /*Checks if player is going against a wall*/
+var isWalking = false; /*Checks if player is walking*/
+
+var canJump = true; /*Checks if player can jump*/
+var canWallJump = false; /*Checks if player can wall jump*/
+var canDash = true; /*Checks if player can dash*/
+
+
+
+/*Gets input from keyboard and checks if keys are pressed*/
 window.addEventListener('keydown', function(e) {
     if(e.key === 'a'){
         left = true;
-        last_facing = "left";
+        lastFacing = "left";
     }
     if(e.key === 'd'){
         right = true;
-        last_facing = "right";
+        lastFacing = "right";
     }
     if(e.key === 'w'){
         up = true;
@@ -51,12 +70,19 @@ window.addEventListener('keydown', function(e) {
     if((e.key === ' ' || e.key === 'l') && canJump){
         isOnFloor = false;
         isJumping = true;
+        canDash = false;
+        var timerId3 = setTimeout(jumpDashWindow, 120)
+    }
+    if((e.key === ' ' || e.key === 'l') && canWallJump && !isJumping){
+        isWallJumping = true;
     }
     if((e.key === 'k' || e.key === 'Shift') && canDash){
         isDashing = true;
     }
 })
 
+
+/*Gets input from keyboard and checks if keys are released*/
 window.addEventListener('keyup', function(e) {
     if(e.key === 'a'){
         left = false;
@@ -72,71 +98,131 @@ window.addEventListener('keyup', function(e) {
     }
 })
 
+
+/*Calls the game update function every 10 miliseconds*/
 var TimerId = setInterval(updateMove, 10);
 
+
+
 function updateMove(){
+
+    /*Modifies gravity based in wich movement is performed and calls special movement functions*/
     if(isJumping){
         updateJump();
-        gravity = 2
+        gravity = gravJump;
+    }
+    else if(isDashing){
+        updateDash();
+        gravity = gravDash;
+    }
+    else if(isOnWall){
+        gravity = gravWall;
+    }
+    else{
+        gravity = gravDefault; 
     }
 
-    if(isDashing){
-        updateDash()
-        gravity = 0;
-    }
-
-    if(!isDashing && !isJumping){
-        gravity = 6
-    }
-
-    if(left){
-        if(isDashing){
+    /*Movement to the left*/
+    if(left && !isWallJumping){
+        if(isDashing && !up){
             xPosition -= movementSpeed * dash_speed;
         }
+        else if(isDashing &&up){
+            xPosition -= movementSpeed * dash_speed * 0.707;
+        }
         else{
-            xPosition -= movementSpeed
+            xPosition -= movementSpeed;
         }
     }
-    if(right){
-        if(isDashing){
+
+    /*Movement to the Right*/
+    if(right && !isWallJumping){
+        if(isDashing && !up){
             xPosition += movementSpeed * dash_speed;
+        }
+        else if(isDashing && up){
+            xPosition += movementSpeed * dash_speed * 0.707;
         }
         else{
             xPosition += movementSpeed;
         }
     }
 
+    /*Movement up for dashing*/
     if(up && isDashing){
-        yPosition -= movementSpeed * dash_speed;
-    }
-    if(down && isDashing){
-        yPosition += movementSpeed * dash_speed;
+        if(left || right){
+            yPosition -= movementSpeed * dash_speed * 0.707;
+        }
+        else{
+            yPosition -= movementSpeed * dash_speed;
+        }
+        
     }
 
+    /*Movement down for dashing*/
+    if(down && isDashing){
+        if(left || right){
+            yPosition += movementSpeed * dash_speed * 0.707;
+        }
+        else{
+            yPosition += movementSpeed * dash_speed;
+        }
+    }
+
+    /*Stand still dash*/
     if(!right && !left && !up && !down && isDashing){
-        if(last_facing === "right"){
+        if(lastFacing === "right"){
             xPosition += movementSpeed * dash_speed;
         }
-        else if(last_facing === "left"){
+        else if(lastFacing === "left"){
             xPosition -= movementSpeed * dash_speed;
         }
     }
 
+    
+    /*Adds gravity every game update*/
     yPosition += gravity;
     
+    /*Checks movement collision functions*/
     checkMovement()
-    if(isOnFloor && yPosition >= floorPosition - charHeight){
-        yPosition = floorPosition - charHeight;
-    }
-    if(yPosition + charHeight >= 600){
-        dead()
-    }
+
+    /*Limits xPosition if a wall collision ocurred*/
     if(isOnWall){
         xPosition = wallPosition;
     }
+    
+    /*Calls wall jump function and sets gravity*/
+    if(isWallJumping){
+        updateWallJump();
+        gravity = gravJump;
+    }
+
+
+    /*Limits yPosition if floor collision ocurred*/
+    if(isOnFloor && yPosition >= floorPosition - charHeight){
+        yPosition = floorPosition - charHeight;
+    }
+
+    /*Limits yPosition if ceil collision ocurred*/
+    if(isOnCeil && yPosition <= ceilPosition){
+        yPosition = ceilPosition
+    }
+
+    /*Calls dead if player is falling to the bottom of game screen*/
+    if(yPosition >= 600){
+        dead()
+    }
+    
+    /*Calls animation function to change the sprite before aplying movement*/
+    animations();
+
+    /*Applies movement to the player character*/
     character.style.left = xPosition + "px";
     character.style.top =  yPosition + "px";
+
+    /*Checks player conditions*/
     checkStatus();
+    
    
 }
 
@@ -146,6 +232,21 @@ function updateJump(){
     if(jumpFrames >= maxJumpFrames){
         isJumping = false;
         jumpFrames = 0;
+    }
+}
+
+function updateWallJump(){
+    wallJumpFrames += 1;
+    yPosition -= wallJumpSpeedY;
+    if(wallJumpDirection === "left"){
+        xPosition += movementSpeed * wallJumpSpeedX
+    }
+    if(wallJumpDirection === "right"){
+        xPosition -= movementSpeed * wallJumpSpeedX
+    }
+    if(wallJumpFrames >= maxWallJumpFrames){
+        isWallJumping = false;
+        wallJumpFrames = 0;
     }
 }
 
@@ -169,7 +270,21 @@ function checkStatus(){
             canDash = true;
         }
     }
+
+    if((left || right) && isOnFloor){
+        isWalking = true;
+    }
+    else{
+        isWalking = false;
+    }
     
+    if(isOnWall){
+        canWallJump = true;
+    }
+    else{
+        canWallJump = false;
+    }
+
     if(isJumping){
         canJump = false;
     }
@@ -192,4 +307,8 @@ function clearDead(){
 function spawn(){
     xPosition = spawnX;
     yPosition = spawnY;
+}
+
+function jumpDashWindow(){
+    canDash = true;
 }

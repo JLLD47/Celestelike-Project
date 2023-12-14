@@ -2,21 +2,21 @@
     width: 600px;
     height: 600px;
     position: relative;
-    background-color: black;
+    background-color: rgb(153, 204, 255);
 }
 
 #character{
     width: 30px;
     height: 30px;
     position:absolute;
-    background-color: blue;
+    background-image: url("player_stand_1.png");
     top: 570px;
     left: 285px;
 }
 
 .platforms{
     position: absolute;
-    background-color: blueviolet;
+    background-color: rgb(204, 255, 255);
 }
 
 #p_1{
@@ -48,7 +48,7 @@
 }
 
 #p_5{
-    top: 0px;d
+    top: 0px;
     left: 0px;
     width: 30px;
     height: 600px;
@@ -66,6 +66,83 @@
     left: 250px;
     width: 150px;
     height: 20px;
+}
+
+#p_21{
+    top: 0px;
+    left: 0px;
+    width: 30px;
+    height: 600px;
+}
+
+#p_22{
+    top: 0px;
+    left: 570px;
+    width: 30px;
+    height: 600px;
+}
+
+#p_23{
+    top: 0px;
+    left: 30px;
+    width: 430px;
+    height: 30px;
+}
+
+#p_24{
+    top: 570px;
+    left: 30px;
+    width: 100px;
+    height: 30px;
+}
+
+#p_25{
+    top: 200px;
+    left: 130px;
+    width: 30px;
+    height: 400px;
+}
+
+#p_26{
+    top: 200px;
+    left: 160px;
+    width: 60px;
+    height: 30px;
+}
+
+#p_27{
+    top: 30px;
+    left: 300px;
+    width: 30px;
+    height: 450px;
+}
+
+#p_28{
+    top: 570px;
+    left: 330px;
+    width: 100px;
+    height: 30px;
+}
+
+#p_29{
+    top: 300px;
+    left: 430px;
+    width: 30px;
+    height: 140px;
+}
+
+#p_30{
+    top: 0px;
+    left: 540px;
+    width: 30px;
+    height: 170px;
+}
+
+#p_31{
+    top: 30px;
+    left: 430px;
+    width: 30px;
+    height: 90px;
 }
 
 #game{
