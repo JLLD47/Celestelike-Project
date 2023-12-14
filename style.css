@@ -14,9 +14,48 @@
     left: 285px;
 }
 
+#score{
+    position: absolute;
+    z-index: 1;
+    font-size: 1.5rem;
+    top: 0px;
+    left: 50px;
+    width: 200px;
+    height: 30px;
+    color: black;
+}
+
 .platforms{
     position: absolute;
     background-color: rgb(204, 255, 255);
+}
+
+.items{
+    position: absolute;
+}
+
+#i_1{
+    top: 260px;
+    left: 180px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+
+#i_2{
+    top: 540px;
+    left: 500px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+
+#i_3{
+    top: 60px;
+    left: 370px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
 }
 
 #p_1{

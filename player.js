@@ -1,5 +1,6 @@
 var character = document.getElementById('character'); /*Gets the character div in html*/
 var charStyle = getComputedStyle(character); /*Gets an object from we can read the character atributtes*/
+var scorePrompt = document.getElementById("score") /*Gets the score div in html*/
 
 var charWidth = Number(charStyle.width.replace("px", "")); /*Gets character width to use in calculations*/
 var charHeight = Number(charStyle.height.replace("px", "")); /*Gets character height to use in calculations*/
@@ -61,6 +62,11 @@ let canDash = true; /*Checks if player can dash*/
 /*Timers*/
 let timerDash /*Controls time between jump and dash*/
 
+/*General*/
+let score = 0; /*Holds the current score*/
+let hasAnItem = false; /*Checks if player has an item*/
+let itemArr = [] /*Holds the html items the player has*/
+let itemPositionArr = [] /*Holds the original position of items*/
 
 
 /*Gets input from keyboard and checks if keys are pressed*/
@@ -91,6 +97,7 @@ window.addEventListener('keydown', function(e) {
         timerDash = setTimeout(jumpDashWindow, 120)
     }
     if((e.key === 'k' || e.key === 'Shift') && canDash){
+        canJump = false;
         isDashing = true;
     }
 })
@@ -234,6 +241,13 @@ function updateMove(){
     character.style.left = xPosition + "px";
     character.style.top =  yPosition + "px";
 
+    if(hasAnItem){
+        for(let i = 0; i < itemArr.length; i++){
+            itemArr[i].style.top = yPosition - 50 + "px";
+            itemArr[i].style.left = xPosition - 50 + "px";
+        }
+    }
+
     /*Checks player conditions*/
     checkStatus();
     yOldPosition = yPosition
@@ -284,6 +298,9 @@ function checkStatus(){
         if(!isDashing){
             canDash = true;
         }
+        if(hasAnItem){
+           itemUpdate()
+        }
     }
     else{
         canJump = false
@@ -312,7 +329,11 @@ function checkStatus(){
     }
 
     if(isJumping){
+        character.style.height = "33px";
         canJump = false;
+    }
+    else{
+        character.style.height = "30 px"
     }
 
     if(isDashing){
@@ -324,9 +345,35 @@ function checkStatus(){
 function respawn(){
     xPosition = spawnX;
     yPosition = spawnY;
+    restoreItems();
 }
 
 /*Enables dash when some time is passed after the jump*/
 function jumpDashWindow(){
     canDash = true;
+}
+
+/*Update score and removes items*/
+function itemUpdate(){
+    for(let i = 0; i < itemArr.length; i++){
+        score += 100;
+        scorePrompt.innerText = `Score: ${score}`
+        itemArr[i].remove()
+    }
+    itemArr = [];
+    itemPositionArr = [];
+    hasAnItem = false;
+}
+
+/*Resets items picked before dead*/
+function restoreItems(){
+    if(hasAnItem){
+        for(let i = 0; i < itemArr.length; i++){
+            itemArr[i].style.top = itemPositionArr[i].y;
+            itemArr[i].style.left = itemPositionArr[i].x;
+        }
+        itemArr = [];
+        itemPositionArr = [];
+        hasAnItem = false;
+    }
 }

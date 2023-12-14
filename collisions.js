@@ -1,4 +1,6 @@
 const platforms = document.getElementsByClassName("platforms")
+let items = document.getElementsByClassName("items")
+
 let floorPosition /*Position of floor player is on*/
 let ceilPosition /*Position of ceil against wich the player collided*/
 let wallPosition /*Position of wall agains wich the player collided*/
@@ -11,6 +13,7 @@ function checkMovement(){
     landed = checkFloorCollisions();
     crashed = checkWallCollisions();
     topped = checkCeilCollisions();
+    checkItemCollisions()
     if (landed) {
         isOnFloor = true;
     } 
@@ -88,9 +91,9 @@ function checkWallCollisions(){
 /*Checks if player is jumping or dashing against the ceil*/
 function checkCeilCollisions(){
     for (let i = 0; i < platforms.length; i++) {
-        let currentPlatform = getComputedStyle(platforms[i])
-        let pLeft = Number(currentPlatform.left.replace("px",""))
-        let pRight = pLeft + Number(currentPlatform.width.replace("px",""))
+        let currentPlatform = getComputedStyle(platforms[i]);
+        let pLeft = Number(currentPlatform.left.replace("px",""));
+        let pRight = pLeft + Number(currentPlatform.width.replace("px",""));
         let pTop = Number(currentPlatform.top.replace("px",""))
         let pBot = pTop + Number(currentPlatform.height.replace("px",""))
 
@@ -104,4 +107,30 @@ function checkCeilCollisions(){
             }
     }
     return false
+}
+
+function checkItemCollisions(){
+    for(let i = 0; i < items.length; i++){
+        let currentItem = getComputedStyle(items[i]);
+        let iLeft = Number(currentItem.left.replace("px", ""));
+        let iRight = iLeft + Number(currentItem.width.replace("px", ""));
+        let iTop = Number(currentItem.top.replace("px", ""));
+        let iBot = iTop + Number(currentItem.height.replace("px", ""));
+
+        if( xPosition < iRight &&
+            yPosition < iBot &&
+            xPosition + charWidth > iLeft &&
+            yPosition + charHeight > iTop){
+                hasAnItem = true;
+                const item = {
+                    x: currentItem.left,
+                    y: currentItem.top
+                }
+                itemPositionArr.push(item)
+                items[i].style.top = yPosition - 50 + "px";
+                items[i].style.left = xPosition - 50 + "px";
+                itemArr.push(items[i])
+        }
+            
+    }
 }
