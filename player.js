@@ -48,7 +48,7 @@ window.addEventListener('keydown', function(e) {
         isOnFloor = false;
         isJumping = true;
     }
-    if((e.key === 'k') && canDash){
+    if((e.key === 'k' || e.key === 'Shift') && canDash){
         isDashing = true;
     }
 })
