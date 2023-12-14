@@ -9,7 +9,7 @@
     width: 30px;
     height: 30px;
     position:absolute;
-    background-image: url("player_stand_1.png");
+    background-image: url("sprites/player_stand_1.png");
     top: 570px;
     left: 285px;
 }

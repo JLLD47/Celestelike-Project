@@ -1,4 +1,4 @@
-const walkArr = ["url('player_walk_1.png')", "url('player_walk_2.png')"];
+const walkArr = ["url('sprites/player_walk_1.png')", "url('sprites/player_walk_2.png')"];
 let walkArrIndex = 0;
 let intervalWalk
 
@@ -12,7 +12,7 @@ function animations(){
     else if(!isWalking){
         clearInterval(intervalWalk)
         intervalWalk = null;
-        character.style.backgroundImage = "url('player_stand_1.png')"
+        character.style.backgroundImage = "url('sprites/player_stand_1.png')"
     }
 
     if(lastFacing === "left"){
