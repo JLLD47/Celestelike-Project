@@ -16,6 +16,7 @@ var spawnX = 60; /*X position of player respawn, from the left of the screen*/
 var spawnY = 400; /*Y position of player respawn, from the Top of the screen*/
 var xPosition = spawnX; /*X position of the character, from the left of the screen*/
 var yPosition = spawnY; /*Y position of the character, from the top of the screen*/
+var yOldPosition /*Holds the previous Y position of the character, for animation purposes*/
 
 /*Player directions*/
 let right = false; /*Flag to check is right direction is pressed*/
@@ -51,6 +52,7 @@ let isOnFloor = false; /*Checks if player is on the floor*/
 let isOnCeil = false; /*Checks if player is jumping against the ceiling*/
 let isOnWall = false; /*Checks if player is going against a wall*/
 let isWalking = false; /*Checks if player is walking*/
+let isFalling = false; /*Checks if player is falling*/
 
 let canJump = true; /*Checks if player can jump*/
 let canWallJump = false; /*Checks if player can wall jump*/
@@ -234,6 +236,7 @@ function updateMove(){
 
     /*Checks player conditions*/
     checkStatus();
+    yOldPosition = yPosition
     
    
 }
@@ -291,6 +294,14 @@ function checkStatus(){
     }
     else{
         isWalking = false;
+    }
+    if(!isJumping && !isOnFloor && yPosition - yOldPosition > 5){
+        isFalling = true;
+        character.style.height = "40px";
+    }
+    else{
+        isFalling = false;
+        character.style.height = "30px";
     }
     
     if(isOnWall){
