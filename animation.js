@@ -1,6 +1,9 @@
 const walkArr = ["url('sprites/player_walk_1.png')", "url('sprites/player_walk_2.png')"];
+const itemSpriteArr = ["url('sprites/item_1.png')", "url('sprites/item_2.png')"]
 let walkArrIndex = 0;
+let itemSpriteIndex = 0;
 let intervalWalk
+let intervalItem
 
 
 /*Sets player sprite according player status, and iterates through the animation set for the current state*/
@@ -31,6 +34,12 @@ function animations(){
     else if(lastFacing === "right"){
         character.style.transform = "scaleX(1)";
     }
+
+
+    /*Calls item animation function*/
+    if(!intervalItem){
+        intervalItem = setInterval(itemAnimation, 500)
+    }
 }
 
 
@@ -40,5 +49,16 @@ function walkAnimation(){
     walkArrIndex += 1
         if(walkArrIndex > walkArr.length - 1){
             walkArrIndex = 0;
+        }
+}
+
+
+function itemAnimation(){
+    for(let i = 0; i < items.length; i++){
+        items[i].style.backgroundImage = itemSpriteArr[itemSpriteIndex]
+    }
+    itemSpriteIndex += 1
+        if(itemSpriteIndex > itemSpriteArr.length -1){
+            itemSpriteIndex = 0;
         }
 }

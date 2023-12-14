@@ -31,31 +31,29 @@
 }
 
 .items{
+    background-image: url("sprites/item_1.png");
     position: absolute;
 }
 
 #i_1{
     top: 260px;
     left: 180px;
-    width: 20px;
-    height: 20px;
-    background-color: red;
+    width: 30px;
+    height: 30px;
 }
 
 #i_2{
     top: 540px;
     left: 500px;
-    width: 20px;
-    height: 20px;
-    background-color: red;
+    width: 30px;
+    height: 30px;
 }
 
 #i_3{
     top: 60px;
     left: 370px;
-    width: 20px;
-    height: 20px;
-    background-color: red;
+    width: 30px;
+    height: 30px;
 }
 
 #p_1{
