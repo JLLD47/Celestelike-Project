@@ -15,10 +15,14 @@ var up = false;
 var down = false;
 var last_facing = "right";
 
+var movementSpeed = 3;
+
 var jumpFrames = 0;
+var maxJumpFrames = 10;
+var jumpSpeed = 12;
 
 var dashFrames = 0;
-var dash_speed = 10;
+var dash_speed = 7;
 
 var isJumping = false;
 var isDashing = false;
@@ -87,34 +91,34 @@ function updateMove(){
 
     if(left){
         if(isDashing){
-            xPosition -= 2 * dash_speed;
+            xPosition -= movementSpeed * dash_speed;
         }
         else{
-            xPosition -= 2
+            xPosition -= movementSpeed
         }
     }
     if(right){
         if(isDashing){
-            xPosition += 2 * dash_speed;
+            xPosition += movementSpeed * dash_speed;
         }
         else{
-            xPosition += 2;
+            xPosition += movementSpeed;
         }
     }
 
     if(up && isDashing){
-        yPosition -= 2 * dash_speed;
+        yPosition -= movementSpeed * dash_speed;
     }
     if(down && isDashing){
-        yPosition += 2 * dash_speed;
+        yPosition += movementSpeed * dash_speed;
     }
 
     if(!right && !left && !up && !down && isDashing){
         if(last_facing === "right"){
-            xPosition += 2 * dash_speed;
+            xPosition += movementSpeed * dash_speed;
         }
         else if(last_facing === "left"){
-            xPosition -= 2 * dash_speed;
+            xPosition -= movementSpeed * dash_speed;
         }
     }
 
@@ -138,8 +142,8 @@ function updateMove(){
 
 function updateJump(){
     jumpFrames += 1;
-    yPosition -= 10;
-    if(jumpFrames >= 10){
+    yPosition -= jumpSpeed;
+    if(jumpFrames >= maxJumpFrames){
         isJumping = false;
         jumpFrames = 0;
     }
