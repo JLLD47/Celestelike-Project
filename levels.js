@@ -14,6 +14,9 @@ const level1 = `<div class="platforms" id="p_21"></div>
 <div class="platforms" id="p_1_9"></div>
 <div class="platforms" id="p_1_10"></div>
 <div class="platforms" id="p_1_11"></div>
+<div class="traps trapsV" id="t_1_1"></div>
+<div class="traps trapsV" id="t_1_2"></div>
+<div class="traps trapsH" id="t_1_3"></div>
 <div class="items" id="i_1_1"></div>
 <div class="items" id="i_1_2"></div>
 <div class="items" id="i_1_3"></div>
