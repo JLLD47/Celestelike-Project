@@ -22,6 +22,9 @@ function animations(){
         else if(isFalling){
             character.style.backgroundImage = "url('sprites/player_fall_1.png')";
         }
+        else if(isOnWall){
+            character.style.backgroundImage = "url('sprites/trywallslide_2.png')";
+        }
         else{
             character.style.backgroundImage = "url('sprites/player_stand_1.png')";
         }

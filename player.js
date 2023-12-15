@@ -322,6 +322,7 @@ function checkStatus(){
     }
     
     if(isOnWall){
+        character.style.height = "33px"
         canWallJump = true;
     }
     else{
