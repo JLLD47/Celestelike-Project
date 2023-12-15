@@ -1,4 +1,6 @@
 const platforms = document.getElementsByClassName("platforms")
+const traps = document.getElementsByClassName("traps")
+const end = document.getElementsByClassName("end")
 let items = document.getElementsByClassName("items")
 
 let floorPosition /*Position of floor player is on*/
@@ -7,13 +9,27 @@ let wallPosition /*Position of wall agains wich the player collided*/
 let landed /*Player is on floor*/
 let crashed /*Player is moving against a wall*/
 let topped /*Player is moving against a ceil*/
+let traped /*Player is moving against a trap*/
+let ended /*Player is moving against the end*/
 
 /*Calls collision functions and checks player status*/
 function checkMovement(){
+    ended = checkEndCollisions()
+    if(ended){
+        levelIndex += 1;
+        board.innerHTML = levelArr[levelIndex];
+        spawnX = levelSpawnArr[levelIndex].x;
+        spawnY = levelSpawnArr[levelIndex].y;
+        respawn();
+    }
+    traped = checkTrapCollisions();
+    if(traped){
+        respawn()
+    }
     landed = checkFloorCollisions();
     crashed = checkWallCollisions();
     topped = checkCeilCollisions();
-    checkItemCollisions()
+    checkItemCollisions();
     if (landed) {
         isOnFloor = true;
     } 
@@ -32,6 +48,8 @@ function checkMovement(){
     else{
         isOnCeil = false;
     }
+    
+   
 }
 
 
@@ -132,5 +150,46 @@ function checkItemCollisions(){
                 itemArr.push(items[i])
         }
             
+    }
+}
+
+function checkTrapCollisions(){
+    for (let i = 0; i < traps.length; i++) {
+        let currentTrap = getComputedStyle(traps[i])
+        let tLeft = Number(currentTrap.left.replace("px",""))
+        let tRight = tLeft + Number(currentTrap.width.replace("px",""))
+        let tTop = Number(currentTrap.top.replace("px",""))
+        let tBot = tTop + Number(currentTrap.height.replace("px",""))
+
+        if ( xPosition < tRight && 
+            yPosition < tBot &&
+            xPosition + charWidth > tLeft &&
+            yPosition + charHeight > tTop) {
+                return true
+            }
+        }
+    return false
+}
+
+function checkEndCollisions(){
+    if(end.length > 0){
+        let currentEnd = getComputedStyle(end[0])
+        let eLeft = Number(currentEnd.left.replace("px",""))
+        let eRight = eLeft + Number(currentEnd.width.replace("px",""))
+        let eTop = Number(currentEnd.top.replace("px",""))
+        let eBot = eTop + Number(currentEnd.height.replace("px",""))
+
+        if ( xPosition < eRight && 
+            yPosition < eBot &&
+            xPosition + charWidth > eLeft &&
+            yPosition + charHeight > eTop) {
+                return true
+            }
+        else{
+            return false
+        }
+    }
+    else{
+        return false
     }
 }

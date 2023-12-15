@@ -13,11 +13,11 @@ const gravDash = 0; /*Gravity value during dash */
 const gravWall = 1; /*Gravity value while grabing a wall*/
 
 /*Player position*/
-var spawnX = 60; /*X position of player respawn, from the left of the screen*/
-var spawnY = 400; /*Y position of player respawn, from the Top of the screen*/
-var xPosition = spawnX; /*X position of the character, from the left of the screen*/
-var yPosition = spawnY; /*Y position of the character, from the top of the screen*/
-var yOldPosition /*Holds the previous Y position of the character, for animation purposes*/
+let spawnX = 60; /*X position of player respawn, from the left of the screen*/
+let spawnY = 500; /*Y position of player respawn, from the Top of the screen*/
+let xPosition = spawnX; /*X position of the character, from the left of the screen*/
+let yPosition = spawnY; /*Y position of the character, from the top of the screen*/
+let yOldPosition /*Holds the previous Y position of the character, for animation purposes*/
 
 /*Player directions*/
 let right = false; /*Flag to check is right direction is pressed*/
@@ -340,12 +340,14 @@ function checkStatus(){
     if(isDashing){
         canDash = false;
     }
-}
+}   
 
 /*Resets player position to the level spawn*/
 function respawn(){
     xPosition = spawnX;
     yPosition = spawnY;
+    character.style.left = xPosition + "px";
+    character.style.top = yPosition + "px";
     restoreItems();
 }
 

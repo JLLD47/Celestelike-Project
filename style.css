@@ -36,6 +36,19 @@
     position: absolute;
 }
 
+.traps{
+    position: absolute;
+    background-repeat: repeat;
+}
+
+.trapsV{
+    background-image: url("sprites/trapSpikeV.png");
+}
+
+.trapsH{
+    background-image: url("sprites/trapSpikeH.png");
+}
+
 #i_1{
     top: 260px;
     left: 180px;
@@ -147,52 +160,37 @@
     height:20px;
 }
 
-#p_11{
-    top: ;
-    left:;
-    width: ;
-    height:;
-}
-
-#p_12{
-    top: ;
-    left:;
-    width: ;
-    height:;
-}
-
-#t_13{
+#t_1{
     top: 410px;
     left: 240px;
     width: 20px;
     height:60px;
-    background-color: rgba(240, 255, 255, 0);
-    background-image: url(sprites/trapSpikeV.png);
-    background-repeat: repeat;
-
 }
 
-#t_14{
+#t_4{
     top: 280px;
-    left: 330px;
+    left: 320px;
     width: 20px;
     height: 20px;
-    background-color: rgba(240, 255, 255, 0);
-    background-image: url(sprites/trapSpikeH.png);
-    background-repeat: repeat;
-    
 }
 
-#t_15{
+#t_3{
     top: 550px;
-    left: 460px;
+    left: 470px;
     width:20px;
     height:20px;
-    background-color: rgba(240, 255, 255, 0);
-    background-image: url(sprites/trapSpikeH.png);
 }
 
 
+
+#e_1{
+    position: absolute;
+    top: 0px;
+    left: 460px;
+    width: 80px;
+    height: 20px;
+    background-color: transparent;
+}
 
 #p_21{
     top: 0px;
@@ -269,11 +267,4 @@
     left: 430px;
     width: 30px;
     height: 90px;
-}
-
-#game{
-    position: absolute;
-    color: red;
-    top: 300px;
-    left: 300px;
 }
