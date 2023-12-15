@@ -1,9 +1,18 @@
 const walkArr = ["url('sprites/player_walk_1.png')", "url('sprites/player_walk_2.png')"];
+const iceSpikeHArr = ["url('sprites/trapSpike1H.png')", "url('sprites/trapSpike2H.png')"]
+const iceSpikeVArr = ["url('sprites/trapSpike1V.png')", "url('sprites/trapSpike2V.png')"]
 const itemSpriteArr = ["url('sprites/item_1.png')", "url('sprites/item_2.png')"]
+const iceSpriteArr = ["url('sprites/iceSprite1.png')", "url('sprites/iceSprite2.png')"]
+const iceSpikesH = document.getElementsByClassName("trapsH")
+const iceSpikesV = document.getElementsByClassName("trapsV")
 let walkArrIndex = 0;
 let itemSpriteIndex = 0;
+let iceSpriteIndex = 0;
+let iceSpikeIndex = 0;
 let intervalWalk
 let intervalItem
+let intervalIce
+let intervalSpike
 
 
 /*Sets player sprite according player status, and iterates through the animation set for the current state*/
@@ -43,6 +52,12 @@ function animations(){
     if(!intervalItem){
         intervalItem = setInterval(itemAnimation, 500)
     }
+    if(!intervalIce){
+        intervalIce = setInterval(iceAnimation, 800)
+    }
+    if(!intervalSpike){
+        intervalSpike = setInterval(iceSpikesAnimation, 1500)
+    }
 }
 
 
@@ -64,4 +79,29 @@ function itemAnimation(){
         if(itemSpriteIndex > itemSpriteArr.length -1){
             itemSpriteIndex = 0;
         }
+}
+
+function iceAnimation(){
+    for(let i = 0; i < platforms.length; i++){
+        platforms[i].style.backgroundImage = iceSpriteArr[iceSpriteIndex] 
+    }
+    iceSpriteIndex += 1
+        if(iceSpriteIndex > iceSpriteArr.length -1){
+            iceSpriteIndex = 0
+        }
+}
+
+function iceSpikesAnimation(){
+    for(let i = 0; i < iceSpikesH.length; i++){
+        iceSpikesH[i].style.backgroundImage = iceSpikeHArr[iceSpikeIndex]
+    }
+    for(let i = 0; i < iceSpikesV.length; i ++){
+        iceSpikesV[i].style.backgroundImage = iceSpikeVArr[iceSpikeIndex]
+    }
+
+    iceSpikeIndex += 1
+    if(iceSpikeIndex > iceSpikeHArr.length -1){
+        iceSpikeIndex = 0
+    }
+
 }

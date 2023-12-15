@@ -62,6 +62,9 @@ let canDash = true; /*Checks if player can dash*/
 
 /*Timers*/
 let timerDash /*Controls time between jump and dash*/
+let hours = 0
+let minutes = 0
+let seconds = 0
 
 /*General*/
 let score = 0; /*Holds the current score*/
@@ -124,9 +127,11 @@ window.addEventListener('keyup', function(e) {
 /*Calls the game update function every 10 miliseconds*/
 var TimerId = setInterval(updateMove, 10);
 
+var TimerId2 = setInterval(scoreTimer, 1000);
 
 /*Main game function*/
 function updateMove(){
+
 
     /*Modifies gravity based in wich movement is performed and calls special movement functions*/
     if(isJumping){
@@ -365,7 +370,7 @@ function jumpDashWindow(){
 function itemUpdate(){
     for(let i = 0; i < itemArr.length; i++){
         score += 100;
-        scorePrompt.innerText = `Score: ${score}`
+        scorePrompt.innerText = `Score: ${score}`;
         itemArr[i].remove()
     }
     itemArr = [];
@@ -385,3 +390,16 @@ function restoreItems(){
         hasAnItem = false;
     }
 }
+
+/*function scoreTimer(){
+    seconds += 1;
+    if(seconds >= 60){
+        minutes += 1;
+        seconds = 0;
+    }
+    if(minutes >= 60){
+        hours += 1;
+        minutes = 0;
+    }
+    scorePrompt.innerText = `Score: ${score}  Time: ${hours} : ${minutes} : ${seconds}`
+}*/

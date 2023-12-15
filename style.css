@@ -3,7 +3,7 @@ header{
     margin: auto;
     width: 600px;
     height: 30px;
-    background-image: url("sprites/scoreBa.png")
+    background-image: url("sprites/scoreBg.png")
 }
 
 #board{
@@ -24,7 +24,7 @@ header{
 }
 
 #score{
-    background-image: url("sprites/ice3.png");
+    background-image: url("sprites/iceScore.png");
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: absolute;
@@ -39,7 +39,7 @@ header{
 
 .platforms{
     position: absolute;
-    background-image: url("sprites/ice2.png");
+    background-image: url("sprites/iceSprite1.png");
 }
 
 .items{
@@ -53,11 +53,11 @@ header{
 }
 
 .trapsV{
-    background-image: url("sprites/trapSpikeV.png");
+    background-image: url("sprites/trapSpike1V.png");
 }
 
 .trapsH{
-    background-image: url("sprites/trapSpikeH.png");
+    background-image: url("sprites/trapSpike1H.png");
 }
 
 
