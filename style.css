@@ -2,7 +2,7 @@
     width: 600px;
     height: 600px;
     position: relative;
-    background-color: rgb(153, 204, 255);
+    background-image: url("sprites/background.png");
 }
 
 #character{
@@ -28,7 +28,7 @@
 
 .platforms{
     position: absolute;
-    background-color: rgb(204, 255, 255);
+    background-image: url("sprites/ice.png");
 }
 
 .items{
@@ -49,140 +49,10 @@
     background-image: url("sprites/trapSpikeH.png");
 }
 
-#i_1{
-    top: 260px;
-    left: 180px;
-    width: 30px;
-    height: 30px;
-}
 
-#i_2{
-    top: 540px;
-    left: 500px;
-    width: 30px;
-    height: 30px;
-}
+/*Level 1*/
 
-#i_3{
-    top: 60px;
-    left: 370px;
-    width: 30px;
-    height: 30px;
-}
-#i_4{
-    top: 305px;
-    left: 230px;
-    width: 30px;
-    height: 30px;
-}
-
-#i_5{
-    top: 540px;
-    left: 360px;
-    width: 30px;
-    height: 30px;
-}
-
-#i_6{
-    top: 530px;
-    left: 500px;
-    width: 30px;
-    height: 30px;
-}
-
-#p_1{
-    top: 0px;
-    width: 30px;
-    left: 0px;
-    height: 600px;
-}
-
-#p_2{
-    top: 0px;
-    width: 30px;
-    left: 570px;
-    height:600px;
-}
-
-#p_3{
-    top: 570px ;
-    width: 200px;
-    left:0px;
-    height:30px;
-}
-
-#p_4{
-    top: 300px;
-    left: 260px;
-    width: 100px;
-    height: 300px;
-}
-
-#p_5{
-    top: 430px;
-    left: 120px;
-    width: 50px;
-    height: 30px;
-}
-
-#p_6{
-    top: 320px;
-    left: 0px;
-    width:100px;
-    height:30px;
-}
-
-#p_7{
-    top: 570px;
-    left: 420px;
-    width: 100px;
-    height:20px;
-}
-
-#p_8{
-    top: 240px;
-    left: 500px;
-    width: 20px;
-    height: 260px;
-}
-
-#p_9{
-    top: 40px;
-    left: 500px;
-    width: 20px;
-    height: 160px;
-}
-
-#p_10{
-    top: 30px;
-    left: 400px;
-    width: 150px;
-    height:20px;
-}
-
-#t_1{
-    top: 410px;
-    left: 240px;
-    width: 20px;
-    height:60px;
-}
-
-#t_4{
-    top: 280px;
-    left: 320px;
-    width: 20px;
-    height: 20px;
-}
-
-#t_3{
-    top: 550px;
-    left: 470px;
-    width:20px;
-    height:20px;
-}
-
-
-
+ /*Level 1 End*/
 #e_1{
     position: absolute;
     top: 0px;
@@ -192,79 +62,218 @@
     background-color: transparent;
 }
 
-#p_21{
+ /*Level 1 Items*/
+#i_1_1{
+    top: 260px;
+    left: 180px;
+    width: 30px;
+    height: 30px;
+}
+
+#i_1_2{
+    top: 540px;
+    left: 500px;
+    width: 30px;
+    height: 30px;
+}
+
+#i_1_3{
+    top: 60px;
+    left: 370px;
+    width: 30px;
+    height: 30px;
+}
+
+ /*Level 1 Platforms*/
+#p_1_1{
     top: 0px;
     left: 0px;
     width: 30px;
     height: 600px;
 }
 
-#p_22{
+#p_1_2{
     top: 0px;
     left: 570px;
     width: 30px;
     height: 600px;
 }
 
-#p_23{
+#p_1_3{
     top: 0px;
     left: 30px;
     width: 430px;
     height: 30px;
 }
 
-#p_24{
+#p_1_4{
     top: 570px;
     left: 30px;
     width: 100px;
     height: 30px;
 }
 
-#p_25{
+#p_1_5{
     top: 200px;
     left: 130px;
     width: 30px;
     height: 400px;
 }
 
-#p_26{
+#p_1_6{
     top: 200px;
     left: 160px;
     width: 60px;
     height: 30px;
 }
 
-#p_27{
+#p_1_7{
     top: 30px;
     left: 300px;
     width: 30px;
     height: 450px;
 }
 
-#p_28{
+#p_1_8{
     top: 570px;
     left: 330px;
     width: 100px;
     height: 30px;
 }
 
-#p_29{
+#p_1_9{
     top: 300px;
     left: 430px;
     width: 30px;
     height: 140px;
 }
 
-#p_30{
+#p_1_10{
     top: 0px;
     left: 540px;
     width: 30px;
     height: 170px;
 }
 
-#p_31{
+#p_1_11{
     top: 30px;
     left: 430px;
     width: 30px;
     height: 90px;
+}
+
+/*Level 2*/
+
+ /*Level 2 Items*/
+#i_2_1{
+    top: 100px;
+    left: 230px;
+    width: 30px;
+    height: 30px;
+}
+
+#i_2_2{
+    top: 500px;
+    left: 330px;
+    width: 30px;
+    height: 30px;
+}
+
+#i_2_3{
+    top: 530px;
+    left: 500px;
+    width: 30px;
+    height: 30px;
+}
+
+ /*Level 2 Traps*/
+ #t_2_1{
+    top: 450px;
+    left: 200px;
+    width: 20px;
+    height:120px;
+}
+
+#t_2_2{
+    top: 550px;
+    left: 250px;
+    width: 180px;
+    height: 20px;
+}
+
+#t_2_3{
+    top: 550px;
+    left: 470px;
+    width:20px;
+    height:20px;
+}
+
+/*Level 2 Platforms*/
+#p_2_1{
+    top: 0px;
+    width: 30px;
+    left: 0px;
+    height: 600px;
+}
+
+#p_2_2{
+    top: 0px;
+    width: 30px;
+    left: 570px;
+    height:600px;
+}
+
+#p_2_3{
+    top: 570px ;
+    width: 460px;
+    left: 0px;
+    height:30px;
+}
+
+#p_2_4{
+    top: 420px;
+    left: 200px;
+    width: 50px;
+    height: 30px;
+}
+
+#p_2_5{
+    top: 450px;
+    left: 220px;
+    width: 30px;
+    height: 120px;
+}
+#p_2_6{
+    top: 420px;
+    left: 430px;
+    width:30px;
+    height:150px;
+}
+
+#p_2_7{
+    top: 470px;
+    left: 320px;
+    width: 50px;
+    height:20px;
+}
+
+#p_2_8{
+    top: 240px;
+    left: 500px;
+    width: 20px;
+    height: 260px;
+}
+
+#p_2_9{
+    top: 40px;
+    left: 500px;
+    width: 20px;
+    height: 160px;
+}
+
+#p_2_10{
+    top: 30px;
+    left: 400px;
+    width: 150px;
+    height:20px;
 }

@@ -1,48 +1,40 @@
 let board = document.getElementById('level');
-let levelIndex = 0;
+let levelIndex = 1;
 
 
 const level1 = `<div class="platforms" id="p_21"></div>
-<div class="platforms" id="p_22"></div>
-<div class="platforms" id="p_23"></div>
-<div class="platforms" id="p_24"></div>
-<div class="platforms" id="p_25"></div>
-<div class="platforms" id="p_26"></div>
-<div class="platforms" id="p_27"></div>
-<div class="platforms" id="p_28"></div>
-<div class="platforms" id="p_29"></div>
-<div class="platforms" id="p_30"></div>
-<div class="platforms" id="p_31"></div>
-<div class="platforms" id="p_32"></div>
-<div class="platforms" id="p_33"></div>
-<div class="platforms" id="p_34"></div>
-<div class="platforms" id="p_35"></div>
-<div class="platforms" id="p_36"></div>
-<div class="platforms" id="p_37"></div>
-<div class="platforms" id="p_38"></div>
-<div class="platforms" id="p_39"></div>
-<div class="platforms" id="p_40"></div> 
-<div class="items" id="i_1"></div>
-<div class="items" id="i_2"></div>
-<div class="items" id="i_3"></div>
+<div class="platforms" id="p_1_1"></div>
+<div class="platforms" id="p_1_2"></div>
+<div class="platforms" id="p_1_3"></div>
+<div class="platforms" id="p_1_4"></div>
+<div class="platforms" id="p_1_5"></div>
+<div class="platforms" id="p_1_6"></div>
+<div class="platforms" id="p_1_7"></div>
+<div class="platforms" id="p_1_8"></div>
+<div class="platforms" id="p_1_9"></div>
+<div class="platforms" id="p_1_10"></div>
+<div class="platforms" id="p_1_11"></div>
+<div class="items" id="i_1_1"></div>
+<div class="items" id="i_1_2"></div>
+<div class="items" id="i_1_3"></div>
 <div class="end" id="e_1"></div>`
 
 const level2 = `<div class="platforms" id="p_1"></div>
-<div class="platforms" id="p_2"></div>
-<div class="platforms" id="p_3"></div>
-<div class="platforms" id="p_4"></div>
-<div class="platforms" id="p_5"></div>
-<div class="platforms" id="p_6"></div>
-<div class="platforms" id="p_7"></div>
-<div class="platforms" id="p_8"></div>
-<div class="platforms" id="p_9"></div>
-<div class="platforms" id="p_10"></div>
-<div class="traps trapsV" id="t_1"></div>
-<div class="traps trapsH" id="t_4"></div>
-<div class="traps trapsH" id="t_3"></div>
-<div class="items" id="i_4"></div>
-<div class="items" id="i_5"></div>
-<div class="items" id="i_6"></div>`
+<div class="platforms" id="p_2_1"></div>
+<div class="platforms" id="p_2_2"></div>
+<div class="platforms" id="p_2_3"></div>
+<div class="platforms" id="p_2_4"></div>
+<div class="platforms" id="p_2_5"></div>
+<div class="platforms" id="p_2_6"></div>
+<div class="platforms" id="p_2_7"></div>
+<div class="platforms" id="p_2_8"></div>
+<div class="platforms" id="p_2_9"></div>
+<div class="traps trapsV" id="t_2_1"></div>
+<div class="traps trapsH" id="t_2_2"></div>
+<div class="traps trapsH" id="t_2_3"></div>
+<div class="items" id="i_2_1"></div>
+<div class="items" id="i_2_2"></div>
+<div class="items" id="i_2_3"></div>`
 
 const spawnLevel1 = {
     x: 60,
