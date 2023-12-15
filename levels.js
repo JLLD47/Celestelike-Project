@@ -29,12 +29,33 @@ const level2 = `<div class="platforms" id="p_1"></div>
 <div class="platforms" id="p_2_7"></div>
 <div class="platforms" id="p_2_8"></div>
 <div class="platforms" id="p_2_9"></div>
+<div class="platforms" id="p_2_10"></div>
+<div class="platforms" id="p_2_11"></div>
+<div class="platforms" id="p_2_12"></div>
+<div class="platforms" id="p_2_13"></div>
+<div class="platforms" id="p_2_14"></div>
+<div class="platforms" id="p_2_15"></div>
+<div class="platforms" id="p_2_16"></div>
+<div class="platforms" id="p_2_17"></div>
+<div class="platforms" id="p_2_18"></div>
+<div class="platforms" id="p_2_19"></div>
 <div class="traps trapsV" id="t_2_1"></div>
 <div class="traps trapsH" id="t_2_2"></div>
 <div class="traps trapsH" id="t_2_3"></div>
+<div class="traps trapsH" id="t_2_4"></div>
+<div class="traps trapsH" id="t_2_5"></div>
+<div class="traps trapsH" id="t_2_6"></div>
+<div class="traps trapsH" id="t_2_7"></div>
+<div class="traps trapsH" id="t_2_8"></div>
+<div class="traps trapsH" id="t_2_9"></div>
+<div class="traps trapsH" id="t_2_10"></div>
+<div class="traps trapsH" id="t_2_11"></div>
+<div class="traps trapsH" id="t_2_12"></div>
+<div class="traps trapsH" id="t_2_13"></div>
 <div class="items" id="i_2_1"></div>
 <div class="items" id="i_2_2"></div>
-<div class="items" id="i_2_3"></div>`
+<div class="items" id="i_2_3"></div>
+<div class="items" id="i_2_4"></div>`
 
 const spawnLevel1 = {
     x: 60,
@@ -56,6 +77,7 @@ board.innerHTML = levelArr[levelIndex]
 window.addEventListener('keydown', function(e) {
     if(e.key === "1"){
         board.innerHTML = level1;
+        levelIndex = 0;
         spawnX = spawnLevel1.x;
         spawnY = spawnLevel1.y;
         respawn()
@@ -63,6 +85,7 @@ window.addEventListener('keydown', function(e) {
     }
     if(e.key === "2"){
         board.innerHTML = level2;
+        levelIndex = 1;
         spawnX = spawnLevel1.x;
         spawnY = spawnLevel1.y;
         respawn()

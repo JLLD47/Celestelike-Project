@@ -31,8 +31,8 @@ const movementSpeed = 3; /*Movement speed value*/
 
  /*Jump values*/
 let jumpFrames = 0; /*Counts the time since jump started*/
-const maxJumpFrames = 10; /*Jump duration*/
-const jumpSpeed = 12; /*Jump distance*/
+const maxJumpFrames = 12; /*Jump duration*/
+const jumpSpeed = 10; /*Jump distance*/
 
  /*Wall jump values*/
 let wallJumpFrames = 0; /*Counts the time since wall jump started*/
@@ -43,7 +43,8 @@ let wallJumpDirection /*The direction for the wall jump*/
 
  /*Dash values*/
 let dashFrames = 0; /*Counts time since dash started*/
-const dash_speed = 8; /*Dash distance*/
+const dash_speed = 4; /*Dash distance*/
+const dash_max_frames = 10/*Dash time*/
 
 /*Player status*/
 let isJumping = false; /*Checks if player is jumping*/
@@ -90,11 +91,11 @@ window.addEventListener('keydown', function(e) {
         isOnFloor = false;
         isJumping = true;
         canDash = false;
-        timerDash = setTimeout(jumpDashWindow, 120)
+        timerDash = setTimeout(jumpDashWindow, 150)
     }
     if((e.key === ' ' || e.key === 'l') && canWallJump && !isJumping){
         isWallJumping = true;
-        timerDash = setTimeout(jumpDashWindow, 120)
+        timerDash = setTimeout(jumpDashWindow, 150)
     }
     if((e.key === 'k' || e.key === 'Shift') && canDash){
         canJump = false;
@@ -284,7 +285,7 @@ function updateWallJump(){
 /*Dash*/
 function updateDash(){
     dashFrames += 1;
-    if(dashFrames >= 5){
+    if(dashFrames >= dash_max_frames){
         isDashing = false;
         dashFrames = 0;
     }
@@ -324,6 +325,7 @@ function checkStatus(){
     if(isOnWall){
         character.style.height = "33px"
         canWallJump = true;
+        canDash = true;
     }
     else{
         canWallJump = false;
@@ -344,10 +346,13 @@ function checkStatus(){
 
 /*Resets player position to the level spawn*/
 function respawn(){
+    character.style.left = xPosition + "px";
+    character.style.top = yPosition + "px";
     xPosition = spawnX;
     yPosition = spawnY;
     character.style.left = xPosition + "px";
     character.style.top = yPosition + "px";
+    
     restoreItems();
 }
 
