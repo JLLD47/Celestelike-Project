@@ -87,12 +87,12 @@ function checkWallCollisions(){
             yPosition < pBot &&
             xPosition + charWidth > pLeft &&
             yPosition + charHeight > pTop + 10 &&
-            (xPosition > pRight - 15 || xPosition + charWidth < pLeft + 15)) {
-                if(xPosition > pRight - 15){
+            (xPosition > pRight - 20 || xPosition + charWidth < pLeft + 20)) {
+                if(xPosition > pRight - 20){
                     wallPosition = pRight;
                     wallJumpDirection = "left"
                 }
-                else if(xPosition + charWidth < pLeft + 15){
+                else if(xPosition + charWidth < pLeft + 20){
                     wallPosition = pLeft - charWidth;
                     wallJumpDirection = "right"
                 }

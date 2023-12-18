@@ -75,8 +75,8 @@ const spawnLevel4 = {
     y: 500
 }
 
-const levelArr = [level1, level2]
-const levelSpawnArr = [spawnLevel1, spawnLevel2]
+const levelArr = [level1, level2, level4]
+const levelSpawnArr = [spawnLevel1, spawnLevel2, spawnLevel4]
 
 
 board.innerHTML = levelArr[levelIndex]
