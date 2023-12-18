@@ -26,7 +26,10 @@ function animations(){
     else{
         clearInterval(intervalWalk)
         intervalWalk = null;
-        if (isJumping){
+        if(isDashing){
+            character.style.backgroundImage = "url('sprites/player_dash.png')";
+        }
+        else if (isJumping){
             character.style.backgroundImage = "url('sprites/player_jumping_1.png')";
         }
         else if(isFalling){
