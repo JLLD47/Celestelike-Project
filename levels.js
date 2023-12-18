@@ -1,5 +1,6 @@
 let board = document.getElementById('level');
 let levelIndex = 1;
+let bgImage = document.getElementById('board')
 
 
 const level1 = `<div class="platforms" id="p_1_1"></div>
@@ -103,6 +104,7 @@ window.addEventListener('keydown', function(e) {
         levelIndex = 2;
         spawnX = spawnLevel4.x;
         spawnY = spawnLevel4.y;
+        bgImage.style.backgroundImage="url('sprites/peakBG.png')"
         respawn()
     }
     })
