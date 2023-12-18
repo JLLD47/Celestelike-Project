@@ -21,11 +21,13 @@ window.addEventListener('keydown', function(e) {
         canDash = false;
         timerDash = setTimeout(jumpDashWindow, 150)
     }
-    if((e.key === ' ' || e.key === 'l') && canWallJump && !isJumping){
+    if((e.key === ' ' || e.key === 'l') && canWallJump && !isJumping && !jumpButtonPressed){
+        jumpButtonPressed = true;
         isWallJumping = true;
         timerDash = setTimeout(jumpDashWindow, 150)
     }
-    if((e.key === 'k' || e.key === 'Shift') && canDash){
+    if((e.key === 'k' || e.key === 'Shift') && canDash && !dashButtonPressed){
+        dashButtonPressed = true;
         canJump = false;
         isDashing = true;
     }
@@ -45,5 +47,11 @@ window.addEventListener('keyup', function(e) {
     }
     if(e.key === "s"){
         down = false;
+    }
+    if(e.key === ' ' || e.key === 'l'){
+        jumpButtonPressed = false;
+    }
+    if(e.key === 'k' || e.key === 'Shift'){
+        dashButtonPressed = false;
     }
 })

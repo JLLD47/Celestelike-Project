@@ -7,8 +7,8 @@ var charWidth = Number(charStyle.width.replace("px", "")); /*Gets character widt
 var charHeight = Number(charStyle.height.replace("px", "")); /*Gets character height to use in calculations*/
 
 /*Gravity values*/
-let gravity = 5; /*Gravity value, substracted every update*/
-const gravDefault = 5; /*Default gravity value*/
+let gravity = 4; /*Gravity value, substracted every update*/
+const gravDefault = 4; /*Default gravity value*/
 const gravJump = 2; /*Gravity value during jump*/
 const gravDash = 0; /*Gravity value during dash */
 const gravWall = 1; /*Gravity value while grabing a wall*/
@@ -37,14 +37,14 @@ const jumpSpeed = 10; /*Jump distance*/
 
  /*Wall jump values*/
 let wallJumpFrames = 0; /*Counts the time since wall jump started*/
-const maxWallJumpFrames = 10; /*Wall jump duration*/
-const wallJumpSpeedY = 15; /*Wall jump y distance*/
-const wallJumpSpeedX = 2; /*Wall jump x distance*/
+const maxWallJumpFrames = 13; /*Wall jump duration*/
+const wallJumpSpeedY = 10; /*Wall jump y distance*/
+const wallJumpSpeedX = 1.5; /*Wall jump x distance*/
 let wallJumpDirection /*The direction for the wall jump*/
 
  /*Dash values*/
 let dashFrames = 0; /*Counts time since dash started*/
-const dash_speed = 3; /*Dash distance*/
+const dash_speed = 6; /*Dash distance*/
 const dash_max_frames = 10/*Dash time*/
 
 /*Player status*/
@@ -75,6 +75,8 @@ let score = 0; /*Holds the current score*/
 let hasAnItem = false; /*Checks if player has an item*/
 let itemArr = [] /*Holds the html items the player has*/
 let itemPositionArr = [] /*Holds the original position of items*/
+let jumpButtonPressed = false;
+let dashButtonPressed = false;
 
 
 /*Calls the game update function every 10 miliseconds*/
@@ -105,37 +107,34 @@ function updateMove(){
 
     /*Movement to the left*/
     if(left && !isWallJumping){
+        xPosition -= movementSpeed
         if(isDashing && !up){
-            xPosition -= movementSpeed * dash_speed;
+            xPosition -= dash_speed * 1.5;
         }
-        else if(isDashing &&up){
-            xPosition -= movementSpeed * dash_speed * 0.707;
-        }
-        else{
-            xPosition -= movementSpeed;
+        else if(isDashing && up){
+            xPosition -= dash_speed * 0.707;
         }
     }
 
     /*Movement to the Right*/
     if(right && !isWallJumping){
+        xPosition += movementSpeed;
         if(isDashing && !up){
-            xPosition += movementSpeed * dash_speed;
+            xPosition += dash_speed * 1.5;
         }
         else if(isDashing && up){
-            xPosition += movementSpeed * dash_speed * 0.707;
+            xPosition += dash_speed * 0.707;
         }
-        else{
-            xPosition += movementSpeed;
-        }
+        
     }
 
     /*Movement up for dashing*/
     if(up && isDashing){
         if(left || right){
-            yPosition -= movementSpeed * dash_speed * 0.707;
+            yPosition -= dash_speed * 0.707;
         }
         else{
-            yPosition -= movementSpeed * dash_speed;
+            yPosition -= dash_speed;
         }
         
     }
@@ -143,20 +142,20 @@ function updateMove(){
     /*Movement down for dashing*/
     if(down && isDashing){
         if(left || right){
-            yPosition += movementSpeed * dash_speed * 0.707;
+            yPosition += dash_speed * 0.707;
         }
         else{
-            yPosition += movementSpeed * dash_speed;
+            yPosition += dash_speed;
         }
     }
 
     /*Stand still dash*/
     if(!right && !left && !up && !down && isDashing){
         if(lastFacing === "right"){
-            xPosition += movementSpeed * dash_speed;
+            xPosition += dash_speed;
         }
         else if(lastFacing === "left"){
-            xPosition -= movementSpeed * dash_speed;
+            xPosition -= dash_speed;
         }
     }
 
@@ -276,7 +275,7 @@ function checkStatus(){
     else{
         isWalking = false;
     }
-    if(!isJumping && !isOnFloor && yPosition - yOldPosition > 5){
+    if(!isJumping && !isOnFloor && yPosition - yOldPosition > 3){
         isFalling = true;
         character.style.height = "40px";
     }

@@ -66,7 +66,7 @@ function checkFloorCollisions(){
             yPosition < pBot &&
             xPosition + charWidth > pLeft &&
             yPosition + charHeight > pTop &&
-            yPosition + charHeight < pTop + 10) {
+            yPosition + charHeight < pTop + 15) {
                 floorPosition = pTop
                 return true
             }
@@ -88,12 +88,12 @@ function checkWallCollisions(){
             yPosition < pBot &&
             xPosition + charWidth > pLeft &&
             yPosition + charHeight > pTop + 10 &&
-            (xPosition > pRight - 30 || xPosition + charWidth < pLeft + 30)) {
-                if(xPosition > pRight - 30){
+            (xPosition > pRight - 15 || xPosition + charWidth < pLeft + 15)) {
+                if(xPosition > pRight - 15){
                     wallPosition = pRight;
                     wallJumpDirection = "left"
                 }
-                else if(xPosition + charWidth < pLeft + 30){
+                else if(xPosition + charWidth < pLeft + 15){
                     wallPosition = pLeft - charWidth;
                     wallJumpDirection = "right"
                 }
@@ -119,7 +119,7 @@ function checkCeilCollisions(){
             yPosition < pBot &&
             xPosition + charWidth > pLeft &&
             yPosition + charHeight > pTop &&
-            yPosition > pBot - 30) {
+            yPosition > pBot - 15) {
                 ceilPosition = pBot
                 return true
             }

@@ -1,6 +1,4 @@
 var gamepad
-var jumpButtonPressed = false;
-var dashButtonPressed = false
 
 /*Search for gamepads*/
 window.addEventListener("gamepadconnected", function (e) {
@@ -17,6 +15,7 @@ function updateGamePad(){
         else{
             left = false
         }
+
         if(gamepad.buttons[15].value === 1){
             right = true;
             lastFacing = "right";
@@ -24,19 +23,23 @@ function updateGamePad(){
         else{
             right = false;
         }
+
         if(gamepad.buttons[12].value === 1){
             up = true;
         }
         else{
             up = false;
         }
+
         if(gamepad.buttons[13].value === 1){
             down = true;
         }
         else{
             down = false;
         }
-        if(gamepad.buttons[0].value === 1){
+
+        if(gamepad.buttons[0].value === 1 && !jumpButtonPressed){
+            jumpButtonPressed = true;
             if(canJump){
                 isOnFloor = false;
                 isJumping = true;
@@ -48,9 +51,16 @@ function updateGamePad(){
                 timerDash = setTimeout(jumpDashWindow, 150)
             }
         }
-        if(gamepad.buttons[2].value == 1 && canDash){
+        else if(gamepad.buttons[0].value === 0){
+            jumpButtonPressed = false;
+        }
+        if(gamepad.buttons[2].value == 1 && canDash && !dashButtonPressed){
+            dashButtonPressed = true;
             canJump = false;
             isDashing = true;
+        }
+        else if(gamepad.buttons[2].value === 0){
+            dashButtonPressed = false;
         }
     }
 }
