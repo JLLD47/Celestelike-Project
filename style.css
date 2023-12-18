@@ -33,7 +33,21 @@ header{
     font-weight: bolder;
     top: 0px;
     left: 50px;
-    width: 200px;
+    width: 250px;
+    height: 30px;
+}
+
+#time{
+    background-image: url("sprites/iceScore.png");
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    z-index: 1;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    top: 0px;
+    left: 370px;
+    width: 300px;
     height: 30px;
 }
 
@@ -405,10 +419,10 @@ header{
 }
 
 #p_2_14{
-    top:120px;
+    top:130px;
     left:320px;
     width: 40px;
-    height: 50px;;
+    height: 40px;;
 }
 
 #p_2_15{

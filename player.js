@@ -1,6 +1,7 @@
 var character = document.getElementById('character'); /*Gets the character div in html*/
 var charStyle = getComputedStyle(character); /*Gets an object from we can read the character atributtes*/
 var scorePrompt = document.getElementById("score") /*Gets the score div in html*/
+var timePrompt = document.getElementById('time') /*Gets the time div in html*/
 
 var charWidth = Number(charStyle.width.replace("px", "")); /*Gets character width to use in calculations*/
 var charHeight = Number(charStyle.height.replace("px", "")); /*Gets character height to use in calculations*/
@@ -65,6 +66,9 @@ let timerDash /*Controls time between jump and dash*/
 let hours = 0
 let minutes = 0
 let seconds = 0
+let strHours
+let strMinutes
+let strSeconds
 
 /*General*/
 let score = 0; /*Holds the current score*/
@@ -370,7 +374,7 @@ function jumpDashWindow(){
 function itemUpdate(){
     for(let i = 0; i < itemArr.length; i++){
         score += 100;
-        scorePrompt.innerText = `Score: ${score}`;
+        scorePrompt.innerText = `Score: ${score}`
         itemArr[i].remove()
     }
     itemArr = [];
@@ -391,7 +395,7 @@ function restoreItems(){
     }
 }
 
-/*function scoreTimer(){
+function scoreTimer(){
     seconds += 1;
     if(seconds >= 60){
         minutes += 1;
@@ -401,5 +405,11 @@ function restoreItems(){
         hours += 1;
         minutes = 0;
     }
-    scorePrompt.innerText = `Score: ${score}  Time: ${hours} : ${minutes} : ${seconds}`
-}*/
+    
+    strHours = hours.toString().padStart(2, '0');
+    strMinutes = minutes.toString().padStart(2, '0');
+    strSeconds = seconds.toString().padStart(2, '0')
+    console.log(strSeconds)
+
+    timePrompt.innerText = `Time: ${strHours}:${strMinutes}:${strSeconds}`
+}
