@@ -7,8 +7,8 @@ var charWidth = Number(charStyle.width.replace("px", "")); /*Gets character widt
 var charHeight = Number(charStyle.height.replace("px", "")); /*Gets character height to use in calculations*/
 
 /*Gravity values*/
-let gravity = 6; /*Gravity value, substracted every update*/
-const gravDefault = 6; /*Default gravity value*/
+let gravity = 5; /*Gravity value, substracted every update*/
+const gravDefault = 5; /*Default gravity value*/
 const gravJump = 2; /*Gravity value during jump*/
 const gravDash = 0; /*Gravity value during dash */
 const gravWall = 1; /*Gravity value while grabing a wall*/
@@ -44,7 +44,7 @@ let wallJumpDirection /*The direction for the wall jump*/
 
  /*Dash values*/
 let dashFrames = 0; /*Counts time since dash started*/
-const dash_speed = 4; /*Dash distance*/
+const dash_speed = 3; /*Dash distance*/
 const dash_max_frames = 10/*Dash time*/
 
 /*Player status*/
@@ -131,6 +131,7 @@ window.addEventListener('keyup', function(e) {
 /*Calls the game update function every 10 miliseconds*/
 var TimerId = setInterval(updateMove, 10);
 
+/*Calls time every second to display time on screen*/
 var TimerId2 = setInterval(scoreTimer, 1000);
 
 /*Main game function*/
@@ -395,6 +396,7 @@ function restoreItems(){
     }
 }
 
+/*Counts time since game started and display it in screen*/
 function scoreTimer(){
     seconds += 1;
     if(seconds >= 60){
@@ -409,7 +411,11 @@ function scoreTimer(){
     strHours = hours.toString().padStart(2, '0');
     strMinutes = minutes.toString().padStart(2, '0');
     strSeconds = seconds.toString().padStart(2, '0')
-    console.log(strSeconds)
 
     timePrompt.innerText = `Time: ${strHours}:${strMinutes}:${strSeconds}`
+}
+
+/*Clamps values in movement functions*/
+function clamp(val, min, max){
+    return Math.min(Math.max(val, min), max);
 }
