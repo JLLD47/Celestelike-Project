@@ -127,6 +127,7 @@ function checkCeilCollisions(){
     return false
 }
 
+/*Checks if player is picking an item*/
 function checkItemCollisions(){
     for(let i = 0; i < items.length; i++){
         let currentItem = getComputedStyle(items[i]);
@@ -153,6 +154,7 @@ function checkItemCollisions(){
     }
 }
 
+/*Checks if player is moving torwards a trap*/
 function checkTrapCollisions(){
     for (let i = 0; i < traps.length; i++) {
         let currentTrap = getComputedStyle(traps[i])
@@ -171,6 +173,7 @@ function checkTrapCollisions(){
     return false
 }
 
+/*Checks if player reached the end of level*/
 function checkEndCollisions(){
     if(end.length > 0){
         let currentEnd = getComputedStyle(end[0])

@@ -2,10 +2,12 @@ var gamepad
 var jumpButtonPressed = false;
 var dashButtonPressed = false
 
+/*Search for gamepads*/
 window.addEventListener("gamepadconnected", function (e) {
     gamepad = e.gamepad;
 });
 
+/*Reads the value in gamepad attributes*/
 function updateGamePad(){
     if(gamepad){
         if(gamepad.buttons[14].value === 1){

@@ -77,57 +77,6 @@ let itemArr = [] /*Holds the html items the player has*/
 let itemPositionArr = [] /*Holds the original position of items*/
 
 
-/*Gets input from keyboard and checks if keys are pressed*/
-window.addEventListener('keydown', function(e) {
-    if(e.key === 'a'){
-        left = true;
-        lastFacing = "left";
-    }
-    if(e.key === 'd'){
-        right = true;
-        lastFacing = "right";
-    }
-    if(e.key === 'w'){
-        up = true;
-    }
-    if(e.key === 's'){
-        down = true;
-    }
-
-    if((e.key === ' ' || e.key === 'l') && canJump){
-        isOnFloor = false;
-        isJumping = true;
-        canDash = false;
-        timerDash = setTimeout(jumpDashWindow, 150)
-    }
-    if((e.key === ' ' || e.key === 'l') && canWallJump && !isJumping){
-        isWallJumping = true;
-        timerDash = setTimeout(jumpDashWindow, 150)
-    }
-    if((e.key === 'k' || e.key === 'Shift') && canDash){
-        canJump = false;
-        isDashing = true;
-    }
-})
-
-
-/*Gets input from keyboard and checks if keys are released*/
-window.addEventListener('keyup', function(e) {
-    if(e.key === 'a'){
-        left = false;
-    }
-    if(e.key === 'd'){
-        right = false;
-    }
-    if(e.key === "w"){
-        up = false;
-    }
-    if(e.key === "s"){
-        down = false;
-    }
-})
-
-
 /*Calls the game update function every 10 miliseconds*/
 var TimerId = setInterval(updateMove, 10);
 
@@ -220,9 +169,13 @@ function updateMove(){
 
     /*Limits xPosition if a wall collision ocurred*/
     if(isOnWall){
-        xPosition = wallPosition;
+        if(lastFacing === "right"){
+            xPosition = clamp(xPosition, 0, wallPosition);
+        }
+        if(lastFacing === "left"){
+            xPosition = clamp(xPosition, wallPosition, 600);
+        }
     }
-    
     /*Calls wall jump function and sets gravity*/
     if(isWallJumping){
         updateWallJump();
@@ -231,13 +184,13 @@ function updateMove(){
 
 
     /*Limits yPosition if floor collision ocurred*/
-    if(isOnFloor && yPosition >= floorPosition - charHeight){
-        yPosition = floorPosition - charHeight;
+    if(isOnFloor){
+        yPosition = clamp(yPosition, 0, floorPosition - charHeight)
     }
 
     /*Limits yPosition if ceil collision ocurred*/
     if(isOnCeil && yPosition <= ceilPosition){
-        yPosition = ceilPosition
+        yPosition = clamp(yPosition, ceilPosition, 600);
     }
 
     /*Calls respawn and resets player position if player falls into the void*/
