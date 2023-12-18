@@ -109,6 +109,15 @@ header{
     background-color: transparent;
 }
 
+#picho{
+    position: absolute;
+    top: 520px;
+    left: 500px;
+    height: 30px;
+    width: 30px;
+    background-image: url('sprites/doggyWalk1.png');
+}
+
  /*Level 1 Items*/
 #i_1_1{
     top: 260px;

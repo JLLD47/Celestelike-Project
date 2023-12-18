@@ -61,7 +61,8 @@ const level2 = `<div class="platforms" id="p_2_1"></div>
 <div class="items" id="i_2_4"></div>
 <div class="end" id="e_2"></div>`
 
-const level4 = `<div class="platforms peakPlatform" id="p_4_3"></div>`
+const level4 = `<div class="platforms peakPlatform" id="p_4_3"></div>
+<div id="picho"></div>`
 
 const spawnLevel0 = {
     x: 0,
@@ -80,7 +81,7 @@ const spawnLevel2 = {
 
 const spawnLevel4 = {
     x: 60,
-    y: 500
+    y: 520
 }
 
 const levelArr = [level0, level1, level2, level4]
@@ -134,17 +135,20 @@ window.addEventListener('keydown', function(e) {
         character.style.display = "none"; 
         spawnX = spawnLevel0.x;
         spawnY = spawnLevel0.y;
-
         bgImage.style.backgroundImage="url('sprites/background2.png')"
         respawn()
     }
     if(e.key === "4"){
         board.innerHTML = level4;
         levelIndex = 3;
+        ending = true;
+        
         spawnX = spawnLevel4.x;
         spawnY = spawnLevel4.y;
         character.style.display = "block";
         bgImage.style.backgroundImage="url('sprites/peakBG.png')"
         respawn()
+        let picho = document.getElementById('picho');
+        var endingTimer = setInterval(endScene, 40)
     }
     })

@@ -16,8 +16,21 @@ function checkMovement(){
     ended = checkEndCollisions()
     if(ended){
         levelIndex += 1;
-        if(levelIndex == 2){
+        if(levelIndex == 3){
+            ending = true;
+            lastFacing = "right";
+            isDashing = false;
+            isFalling = false;
+            isJumping = false;
+            isOnWall = false;
+            isWallJumping = false;
+            board.innerHTML = level4;
+            spawnX = spawnLevel4.x;
+            spawnY = spawnLevel4.y;
             bgImage.style.backgroundImage="url('sprites/peakBG.png')"
+            respawn()
+            let picho = document.getElementById('picho');
+            var endingTimer = setInterval(endScene, 40)
         }
         board.innerHTML = levelArr[levelIndex];
         spawnX = levelSpawnArr[levelIndex].x;

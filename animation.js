@@ -86,7 +86,7 @@ function itemAnimation(){
 }
 
 function iceAnimation(){
-    if(levelIndex != 2){
+    if(levelIndex != 3){
         for(let i = 0; i < platforms.length; i++){
             platforms[i].style.backgroundImage = iceSpriteArr[iceSpriteIndex] 
         }

@@ -62,6 +62,7 @@ let canWallJump = false; /*Checks if player can wall jump*/
 let canDash = true; /*Checks if player can dash*/
 
 /*Timers*/
+let mainLoop /*Controls the main game loop interval*/
 let timerDash /*Controls time between jump and dash*/
 let hours = 0
 let minutes = 0
@@ -77,10 +78,11 @@ let itemArr = [] /*Holds the html items the player has*/
 let itemPositionArr = [] /*Holds the original position of items*/
 let jumpButtonPressed = false;
 let dashButtonPressed = false;
+let ending = false;
 
 
 /*Calls the game update function every 10 miliseconds*/
-var TimerId = setInterval(updateMove, 10);
+mainLoop = setInterval(updateMove, 10);
 
 /*Main game function*/
 function updateMove(){
