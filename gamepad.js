@@ -1,6 +1,7 @@
 var gamepad
 
 /*Search for gamepads*/
+
 window.addEventListener("gamepadconnected", function (e) {
     gamepad = e.gamepad;
 });
