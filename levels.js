@@ -1,7 +1,11 @@
 let board = document.getElementById('level');
-let levelIndex = 1;
+let levelIndex = 0;
 let bgImage = document.getElementById('board')
 
+
+
+const level0 = `<div id="titleImg">Picho</div>
+<button type="button" id="newGame">New Game</button>`
 
 const level1 = `<div class="platforms" id="p_1_1"></div>
 <div class="platforms" id="p_1_2"></div>
@@ -57,9 +61,12 @@ const level2 = `<div class="platforms" id="p_2_1"></div>
 <div class="items" id="i_2_4"></div>
 <div class="end" id="e_2"></div>`
 
-const level4 = `<div class="platforms" id="p_4_1"></div>
-<div class="platforms" id="p_4_2"></div>
-<div class="platforms" id="p_4_3"></div>`
+const level4 = `<div class="platforms peakPlatform" id="p_4_3"></div>`
+
+const spawnLevel0 = {
+    x: 0,
+    y: 0
+}
 
 const spawnLevel1 = {
     x: 60,
@@ -76,34 +83,67 @@ const spawnLevel4 = {
     y: 500
 }
 
-const levelArr = [level1, level2, level4]
-const levelSpawnArr = [spawnLevel1, spawnLevel2, spawnLevel4]
+const levelArr = [level0, level1, level2, level4]
+const levelSpawnArr = [spawnLevel0, spawnLevel1, spawnLevel2, spawnLevel4]
 
 
 board.innerHTML = levelArr[levelIndex]
+character.style.display = "none";
 
+let newGameButton = document.getElementById("newGame")
+
+window.onclick = function(event){
+    if(event.target === newGameButton){
+        /*Calls time every second to display time on screen*/
+        scorePrompt.innerText = `Score: 0`
+        timePrompt.innerText = `Time: 00:00:00`
+        var TimerId2 = setInterval(scoreTimer, 1000);
+        levelIndex += 1;
+        board.innerHTML = levelArr[levelIndex];
+        spawnX = levelSpawnArr[levelIndex].x;
+        spawnY = levelSpawnArr[levelIndex].y;
+        character.style.display = "block";
+        bgImage.style.backgroundImage="url('sprites/background2.png')"
+        respawn();
+    }
+}
 
 window.addEventListener('keydown', function(e) {
     if(e.key === "1"){
         board.innerHTML = level1;
-        levelIndex = 0;
+        levelIndex = 1;
         spawnX = spawnLevel1.x;
         spawnY = spawnLevel1.y;
+        character.style.display = "block";
+        bgImage.style.backgroundImage="url('sprites/background2.png')"
         respawn()
 
     }
     if(e.key === "2"){
         board.innerHTML = level2;
-        levelIndex = 1;
+        levelIndex = 2;
         spawnX = spawnLevel1.x;
         spawnY = spawnLevel1.y;
+        character.style.display = "block";
+        bgImage.style.backgroundImage="url('sprites/background2.png')"
+        respawn()
+    }
+    if(e.key === "3"){
+        board.innerHTML = level0;
+        levelIndex = 0;
+        character.style.display = "none"; 
+        spawnX = spawnLevel0.x;
+        spawnY = spawnLevel0.y;
+
+        bgImage.style.backgroundImage="url('sprites/background2.png')"
         respawn()
     }
     if(e.key === "4"){
         board.innerHTML = level4;
-        levelIndex = 2;
+        levelIndex = 3;
         spawnX = spawnLevel4.x;
         spawnY = spawnLevel4.y;
+        character.style.display = "block";
         bgImage.style.backgroundImage="url('sprites/peakBG.png')"
         respawn()
     }

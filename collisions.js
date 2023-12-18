@@ -16,6 +16,9 @@ function checkMovement(){
     ended = checkEndCollisions()
     if(ended){
         levelIndex += 1;
+        if(levelIndex == 2){
+            bgImage.style.backgroundImage="url('sprites/peakBG.png')"
+        }
         board.innerHTML = levelArr[levelIndex];
         spawnX = levelSpawnArr[levelIndex].x;
         spawnY = levelSpawnArr[levelIndex].y;

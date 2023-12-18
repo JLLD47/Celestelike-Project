@@ -86,15 +86,16 @@ function itemAnimation(){
 }
 
 function iceAnimation(){
-    for(let i = 0; i < platforms.length; i++){
-        platforms[i].style.backgroundImage = iceSpriteArr[iceSpriteIndex] 
-    }
-    iceSpriteIndex += 1
-        if(iceSpriteIndex > iceSpriteArr.length -1){
-            iceSpriteIndex = 0
+    if(levelIndex != 2){
+        for(let i = 0; i < platforms.length; i++){
+            platforms[i].style.backgroundImage = iceSpriteArr[iceSpriteIndex] 
         }
+        iceSpriteIndex += 1
+            if(iceSpriteIndex > iceSpriteArr.length -1){
+                iceSpriteIndex = 0
+            }
+    }
 }
-
 function iceSpikesAnimation(){
     for(let i = 0; i < iceSpikesH.length; i++){
         iceSpikesH[i].style.backgroundImage = iceSpikeHArr[iceSpikeIndex]

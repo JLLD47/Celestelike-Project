@@ -53,7 +53,7 @@ header{
 
 .platforms{
     position: absolute;
-    background-image: url("sprites/iceSprite1.png");
+    background-image: url('sprites/iceTile1.png');
 }
 
 .peakPlatform{
@@ -79,6 +79,23 @@ header{
     background-image: url("sprites/trapSpike1H.png");
 }
 
+/*Menu (Level 0)*/
+
+#titleImg{
+    position:absolute;
+    font-size: 100px;
+    width: 200px;
+    height: 50px;
+    left: 190px;
+    top: 200px;
+}
+#newGame{
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    left: 200px;
+    top: 400px;
+}
 
 /*Level 1*/
 
@@ -459,26 +476,10 @@ header{
  /*Level 4 End*/
  /*Level 4 Traps*/
  /*Level 4 Platforms*/
- 
-#p_4_1{
-    top: 0px;
-    left: 0px;
-    width: 30px;
-    height: 600px;
-    background-color: rgba(240, 248, 255, 0);
-}
-
-#p_4_2{
-    top: 0px;
-    left: 570px;
-    width: 30px;
-    height: 600px;
-    background-color: rgba(240, 248, 255, 0);
-}
 
 #p_4_3{
     top: 550px;
-    left: 30px;
-    width: 540px;
-    height: 50px;
+    left: 0px;
+    width: 600px;
+    height: 128px;
     }

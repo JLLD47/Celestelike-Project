@@ -82,9 +82,6 @@ let dashButtonPressed = false;
 /*Calls the game update function every 10 miliseconds*/
 var TimerId = setInterval(updateMove, 10);
 
-/*Calls time every second to display time on screen*/
-var TimerId2 = setInterval(scoreTimer, 1000);
-
 /*Main game function*/
 function updateMove(){
 
