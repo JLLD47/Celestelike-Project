@@ -93,5 +93,4 @@ window.addEventListener('keydown', function(e) {
         spawnY = spawnLevel1.y;
         respawn()
     }
-})
-
+    })

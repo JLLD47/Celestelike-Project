@@ -1,8 +1,9 @@
 const walkArr = ["url('sprites/player_walk_1.png')", "url('sprites/player_walk_2.png')"];
 const iceSpikeHArr = ["url('sprites/trapSpike1H.png')", "url('sprites/trapSpike2H.png')"]
 const iceSpikeVArr = ["url('sprites/trapSpike1V.png')", "url('sprites/trapSpike2V.png')"]
-const itemSpriteArr = ["url('sprites/item_1.png')", "url('sprites/item_2.png')"]
-const iceSpriteArr = ["url('sprites/iceSprite1.png')", "url('sprites/iceSprite2.png')"]
+const itemSpriteArr = ["url('sprites/bonesprite2.png')", "url('sprites/bonesprite3.png')"]
+const iceSpriteArr = ["url('sprites/iceTile1.png')", "url('sprites/iceTile2.png')"]
+const dogWalkArr = ["url('sprites/doggyWalk1.png') , url('sprites/doggyWalk2.png')"]
 const iceSpikesH = document.getElementsByClassName("trapsH")
 const iceSpikesV = document.getElementsByClassName("trapsV")
 let walkArrIndex = 0;

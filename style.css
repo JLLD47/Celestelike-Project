@@ -11,7 +11,7 @@ header{
     width: 600px;
     height: 600px;
     position: relative;
-    background-image: url("sprites/background.png");
+    background-image: url("sprites/background2.png");
 }
 
 #character{
@@ -40,6 +40,11 @@ header{
 .platforms{
     position: absolute;
     background-image: url("sprites/iceSprite1.png");
+}
+
+.peakPlatform{
+    position: absolute;
+    background-image: url("sprites/peakTile.png")
 }
 
 .items{
@@ -440,3 +445,31 @@ header{
     width: 40px;
     height: 80px;;
 }
+
+/*Level 4*/
+ /*Level 4 End*/
+ /*Level 4 Traps*/
+ /*Level 4 Platforms*/
+ 
+#p_4_1{
+    top: 0px;
+    left: 0px;
+    width: 30px;
+    height: 600px;
+    background-color: rgba(240, 248, 255, 0);
+}
+
+#p_4_2{
+    top: 0px;
+    left: 570px;
+    width: 30px;
+    height: 600px;
+    background-color: rgba(240, 248, 255, 0);
+}
+
+#p_4_4{
+    top: 550px;
+    left: 30px;
+    width: 550px;
+    height: 50px;
+    }
