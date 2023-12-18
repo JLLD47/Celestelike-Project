@@ -1,6 +1,5 @@
 const platforms = document.getElementsByClassName("platforms")
 const traps = document.getElementsByClassName("traps")
-const end = document.getElementsByClassName("end")
 let items = document.getElementsByClassName("items")
 
 let floorPosition /*Position of floor player is on*/
@@ -175,24 +174,25 @@ function checkTrapCollisions(){
 
 /*Checks if player reached the end of level*/
 function checkEndCollisions(){
-    if(end.length > 0){
-        let currentEnd = getComputedStyle(end[0])
-        let eLeft = Number(currentEnd.left.replace("px",""))
-        let eRight = eLeft + Number(currentEnd.width.replace("px",""))
-        let eTop = Number(currentEnd.top.replace("px",""))
-        let eBot = eTop + Number(currentEnd.height.replace("px",""))
-
-        if ( xPosition < eRight && 
-            yPosition < eBot &&
-            xPosition + charWidth > eLeft &&
-            yPosition + charHeight > eTop) {
-                return true
-            }
+        let end = document.getElementsByClassName("end")
+        if(end.length > 0){
+            let currentEnd = getComputedStyle(end[0])
+            let eLeft = Number(currentEnd.left.replace("px",""))
+            let eRight = eLeft + Number(currentEnd.width.replace("px",""))
+            let eTop = Number(currentEnd.top.replace("px",""))
+            let eBot = eTop + Number(currentEnd.height.replace("px",""))
+            if ( xPosition < eRight && 
+                yPosition < eBot &&
+                xPosition + charWidth > eLeft &&
+                yPosition + charHeight > eTop) {
+                    return true
+                }
+            else{
+                return false
+                }
+        }
         else{
             return false
         }
     }
-    else{
-        return false
-    }
-}
+    

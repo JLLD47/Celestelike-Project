@@ -50,12 +50,11 @@ const level2 = `<div class="platforms" id="p_2_1"></div>
 <div class="traps trapsH" id="t_2_7"></div>
 <div class="traps trapsH" id="t_2_8"></div>
 <div class="traps trapsH" id="t_2_10"></div>
-
-
 <div class="items" id="i_2_1"></div>
 <div class="items" id="i_2_2"></div>
 <div class="items" id="i_2_3"></div>
-<div class="items" id="i_2_4"></div>`
+<div class="items" id="i_2_4"></div>
+<div class="end" id="e_2"></div>`
 
 const level4 = `<div class="platforms" id="p_4_1"></div>
 <div class="platforms" id="p_4_2"></div>
