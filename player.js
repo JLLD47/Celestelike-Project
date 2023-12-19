@@ -326,6 +326,7 @@ function jumpDashWindow(){
 /*Update score and removes items*/
 function itemUpdate(){
     for(let i = 0; i < itemArr.length; i++){
+        itemSound.play();
         score += 100;
         scorePrompt.innerText = `Score: ${score}`
         itemArr[i].remove()

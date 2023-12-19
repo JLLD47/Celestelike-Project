@@ -6,6 +6,9 @@ const iceSpriteArr = ["url('sprites/iceTile1.png')", "url('sprites/iceTile2.png'
 const dogWalkArr = ["url('sprites/doggyWalk1.png') , url('sprites/doggyWalk2.png')"]
 const iceSpikesH = document.getElementsByClassName("trapsH")
 const iceSpikesV = document.getElementsByClassName("trapsV")
+const jumpSound = new Audio('music/Jump.wav')
+const stepSound = new Audio('music/Step.wav')
+const dashSound = new Audio('music/Dash.wav')
 let walkArrIndex = 0;
 let itemSpriteIndex = 0;
 let iceSpriteIndex = 0;
@@ -19,17 +22,21 @@ let intervalSpike
 /*Sets player sprite according player status, and iterates through the animation set for the current state*/
 function animations(){
     if(isWalking){
+        stepSound.play()
         if(!intervalWalk){
             intervalWalk = setInterval(walkAnimation, 100);
         }
     }
     else{
+        stepSound.pause()
         clearInterval(intervalWalk)
         intervalWalk = null;
         if(isDashing){
+            dashSound.play()
             character.style.backgroundImage = "url('sprites/player_dash.png')";
         }
-        else if (isJumping){
+        else if (isJumping || isWallJumping){
+            jumpSound.play()
             character.style.backgroundImage = "url('sprites/player_jumping_1.png')";
         }
         else if(isFalling){

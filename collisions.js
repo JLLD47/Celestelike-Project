@@ -1,7 +1,7 @@
 const platforms = document.getElementsByClassName("platforms")
 const traps = document.getElementsByClassName("traps")
 let items = document.getElementsByClassName("items")
-
+const itemSound = new Audio('music/Item.wav')
 let floorPosition /*Position of floor player is on*/
 let ceilPosition /*Position of ceil against wich the player collided*/
 let wallPosition /*Position of wall agains wich the player collided*/
@@ -32,6 +32,7 @@ function checkMovement(){
             spawnY = spawnLevel4.y;
             endingBG()
             respawn()
+            bgImage.style.backgroundColor = "#10033d"
             let picho = document.getElementById('picho');
             var endingTimer = setInterval(endScene, 40)
             let endAnimation = setInterval(endingBG, 700)
@@ -160,6 +161,7 @@ function checkItemCollisions(){
             xPosition + charWidth > iLeft &&
             yPosition + charHeight > iTop){
                 hasAnItem = true;
+                itemSound.play();
                 const item = {
                     x: currentItem.left,
                     y: currentItem.top
