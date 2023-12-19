@@ -24,6 +24,8 @@ function checkMovement(){
             isJumping = false;
             isOnWall = false;
             isWallJumping = false;
+            bgMusic.pause();
+            endMusic.play();
             board.innerHTML = level4;
             spawnX = spawnLevel4.x;
             spawnY = spawnLevel4.y;
