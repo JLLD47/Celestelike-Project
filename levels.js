@@ -3,6 +3,7 @@ let levelIndex = 0;
 let bgImage = document.getElementById('board');
 let bgMusic = new Audio('music/Glacier.mp3');
 let endMusic = new Audio('music/Ending.mp3');
+let menuMusic = new Audio('music/Menu.mp3')
 bgMusic.play()
 
 
@@ -97,8 +98,10 @@ character.style.display = "none";
 let newGameButton = document.getElementById("newGame")
 
 window.onclick = function(event){
+
     if(event.target === newGameButton){
         /*Calls time every second to display time on screen*/
+        menuMusic.play()
         scorePrompt.innerText = `Score: 0`
         timePrompt.innerText = `Time: 00:00:00`
         timerInterval = setInterval(scoreTimer, 1000);
