@@ -44,6 +44,7 @@ function checkMovement(){
     }
     traped = checkTrapCollisions();
     if(traped){
+        deadSound.play()
         respawn()
     }
     landed = checkFloorCollisions();

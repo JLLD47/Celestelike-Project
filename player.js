@@ -193,7 +193,8 @@ function updateMove(){
     }
 
     /*Calls respawn and resets player position if player falls into the void*/
-    if(yPosition >= 600){
+    if(yPosition >= 600 && levelIndex != 0){
+        deadSound.play()
         respawn()
     }
     

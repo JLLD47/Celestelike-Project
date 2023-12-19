@@ -9,6 +9,8 @@ const iceSpikesV = document.getElementsByClassName("trapsV")
 const jumpSound = new Audio('music/Jump.wav')
 const stepSound = new Audio('music/Step.wav')
 const dashSound = new Audio('music/Dash.wav')
+const wallSound = new Audio('music/Friction.wav')
+const deadSound = new Audio('music/Dead.wav')
 let walkArrIndex = 0;
 let itemSpriteIndex = 0;
 let iceSpriteIndex = 0;
@@ -43,6 +45,7 @@ function animations(){
             character.style.backgroundImage = "url('sprites/player_fall_1.png')";
         }
         else if(isOnWall){
+            wallSound.play()
             character.style.backgroundImage = "url('sprites/trywallslide_2.png')";
         }
         else{
