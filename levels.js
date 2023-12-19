@@ -1,7 +1,8 @@
 let board = document.getElementById('level');
 let levelIndex = 0;
 let bgImage = document.getElementById('board')
-
+let bgMusic = new Audio('music/Glacier.mp3')
+bgMusic.play()
 
 
 const level0 = `<div id="titleImg">Picho</div>
