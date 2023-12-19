@@ -26,6 +26,7 @@ function checkMovement(){
             isWallJumping = false;
             bgMusic.pause();
             endMusic.play();
+            clearInterval(timerInterval);
             board.innerHTML = level4;
             spawnX = spawnLevel4.x;
             spawnY = spawnLevel4.y;

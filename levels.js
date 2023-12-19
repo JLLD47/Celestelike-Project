@@ -100,7 +100,7 @@ window.onclick = function(event){
         /*Calls time every second to display time on screen*/
         scorePrompt.innerText = `Score: 0`
         timePrompt.innerText = `Time: 00:00:00`
-        var TimerId2 = setInterval(scoreTimer, 1000);
+        timerInterval = setInterval(scoreTimer, 1000);
         levelIndex += 1;
         board.innerHTML = levelArr[levelIndex];
         spawnX = levelSpawnArr[levelIndex].x;

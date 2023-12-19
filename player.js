@@ -64,6 +64,7 @@ let canDash = true; /*Checks if player can dash*/
 /*Timers*/
 let mainLoop /*Controls the main game loop interval*/
 let timerDash /*Controls time between jump and dash*/
+let timerInterval
 let hours = 0
 let minutes = 0
 let seconds = 0
