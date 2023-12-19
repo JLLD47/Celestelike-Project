@@ -149,7 +149,10 @@ window.addEventListener('keydown', function(e) {
         lastFacing = "right";
         spawnX = spawnLevel4.x;
         spawnY = spawnLevel4.y;
+        bgImage.style.backgroundImage="url('sprites/peakBG.png')"
+        let endAnimation = setInterval(endingBG, 700)
         character.style.display = "block";
+        
         endingBG()
         respawn()
         let picho = document.getElementById('picho');

@@ -1,5 +1,7 @@
 
 let pichoSpriteArr = ["url('sprites/doggyWalk1.png')", "url('sprites/doggyWalk2.png')"];
+let bgEndArr = ["url('sprites/peakBG1.png')" , "url('sprites/peakBG2.png')" , "url('sprites/peakBG3.png')"]
+let bgEndIndex = 0;
 let pichoSpriteIndex = 0;
 let xPlayer = 60
 let xPicho = 500
@@ -35,5 +37,13 @@ function pichoWalk(){
         pichoSpriteIndex = 0;
     }
 }
+
+function endingBG(){
+    bgImage.style.backgroundImage = bgEndArr[bgEndIndex];
+    bgEndIndex += 1;
+    if(bgEndIndex > bgEndArr.length -1){
+        bgEndIndex = 0
+    }
+}     
 
  

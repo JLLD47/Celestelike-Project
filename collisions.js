@@ -34,6 +34,7 @@ function checkMovement(){
             respawn()
             let picho = document.getElementById('picho');
             var endingTimer = setInterval(endScene, 40)
+            let endAnimation = setInterval(endingBG, 700)
         }
         board.innerHTML = levelArr[levelIndex];
         spawnX = levelSpawnArr[levelIndex].x;
