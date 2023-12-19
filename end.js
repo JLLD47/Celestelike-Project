@@ -1,11 +1,12 @@
 
 let pichoSpriteArr = ["url('sprites/doggyWalk1.png')", "url('sprites/doggyWalk2.png')"];
 let bgEndArr = ["url('sprites/peakBG1.png')" , "url('sprites/peakBG2.png')" , "url('sprites/peakBG3.png')"]
+
+let imgCharge = document.getElementById('imgcharge')
 let bgEndIndex = 0;
 let pichoSpriteIndex = 0;
 let xPlayer = 60
 let xPicho = 500
-
 
 function endScene(){
     if(mainLoop){

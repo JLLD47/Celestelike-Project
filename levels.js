@@ -64,7 +64,8 @@ const level2 = `<div class="platforms" id="p_2_1"></div>
 <div class="end" id="e_2"></div>`
 
 const level4 = `<div class="platforms peakPlatform" id="p_4_3"></div>
-<div id="picho"></div>`
+<div id="picho"></div>
+<div id="endText">I miss you</div>`
 
 const spawnLevel0 = {
     x: 0,
@@ -149,7 +150,7 @@ window.addEventListener('keydown', function(e) {
         lastFacing = "right";
         spawnX = spawnLevel4.x;
         spawnY = spawnLevel4.y;
-        bgImage.style.backgroundImage="url('sprites/peakBG.png')"
+        bgImage.style.backgroundColor = "#10033d"
         let endAnimation = setInterval(endingBG, 700)
         character.style.display = "block";
         
