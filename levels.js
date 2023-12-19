@@ -1,7 +1,8 @@
 let board = document.getElementById('level');
 let levelIndex = 0;
-let bgImage = document.getElementById('board')
-let bgMusic = new Audio('music/Glacier.mp3')
+let bgImage = document.getElementById('board');
+let bgMusic = new Audio('music/Glacier.mp3');
+let endMusic = new Audio('music/Ending.mp3');
 bgMusic.play()
 
 
@@ -140,10 +141,12 @@ window.addEventListener('keydown', function(e) {
         respawn()
     }
     if(e.key === "4"){
+        bgMusic.pause()
+        endMusic.play()
         board.innerHTML = level4;
         levelIndex = 3;
         ending = true;
-        
+        lastFacing = "right";
         spawnX = spawnLevel4.x;
         spawnY = spawnLevel4.y;
         character.style.display = "block";
