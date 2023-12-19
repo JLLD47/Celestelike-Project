@@ -3,6 +3,8 @@ let pichoSpriteArr = ["url('sprites/doggyWalk1.png')", "url('sprites/doggyWalk2.
 let pichoSpriteIndex = 0;
 let xPlayer = 60
 let xPicho = 500
+
+
 function endScene(){
     if(mainLoop){
         clearInterval(mainLoop)
@@ -33,3 +35,5 @@ function pichoWalk(){
         pichoSpriteIndex = 0;
     }
 }
+
+ 

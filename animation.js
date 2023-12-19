@@ -4,12 +4,14 @@ const iceSpikeVArr = ["url('sprites/trapSpike1V.png')", "url('sprites/trapSpike2
 const itemSpriteArr = ["url('sprites/bonesprite2.png')", "url('sprites/bonesprite3.png')"]
 const iceSpriteArr = ["url('sprites/iceTile1.png')", "url('sprites/iceTile2.png')"]
 const dogWalkArr = ["url('sprites/doggyWalk1.png') , url('sprites/doggyWalk2.png')"]
+let bgEnddArr = ["url('sprites/peakBG1.png') , url('sprites/peakBG2.png') , url('sprites/peakBG3.png')"]
 const iceSpikesH = document.getElementsByClassName("trapsH")
 const iceSpikesV = document.getElementsByClassName("trapsV")
 let walkArrIndex = 0;
 let itemSpriteIndex = 0;
 let iceSpriteIndex = 0;
 let iceSpikeIndex = 0;
+let bgEndIndex = 0;
 let intervalWalk
 let intervalItem
 let intervalIce
@@ -110,3 +112,15 @@ function iceSpikesAnimation(){
     }
 
 }
+
+function endingBG(){
+    if(levelIndex === 3){
+            for(let i = 0; i < bgImage.length; i++){
+            bgImage[i].style.backgroundImage = bgEnddArr[bgEndIndex] 
+        }
+        bgEndIndex += 1
+            if(bgEndIndex > bgEnddArr.length -1){
+                bgEndIndex = 0
+            }
+    }
+}       

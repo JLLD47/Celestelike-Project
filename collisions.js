@@ -30,7 +30,7 @@ function checkMovement(){
             board.innerHTML = level4;
             spawnX = spawnLevel4.x;
             spawnY = spawnLevel4.y;
-            bgImage.style.backgroundImage="url('sprites/peakBG.png')"
+            endingBG()
             respawn()
             let picho = document.getElementById('picho');
             var endingTimer = setInterval(endScene, 40)

@@ -6,8 +6,8 @@ let endMusic = new Audio('music/Ending.mp3');
 bgMusic.play()
 
 
-const level0 = `<div id="titleImg">Picho</div>
-<button type="button" id="newGame">New Game</button>`
+const level0 = `<div id="titleImg"></div>
+<button type="button" id="newGame"></button>`
 
 const level1 = `<div class="platforms" id="p_1_1"></div>
 <div class="platforms" id="p_1_2"></div>
@@ -150,7 +150,7 @@ window.addEventListener('keydown', function(e) {
         spawnX = spawnLevel4.x;
         spawnY = spawnLevel4.y;
         character.style.display = "block";
-        bgImage.style.backgroundImage="url('sprites/peakBG.png')"
+        endingBG()
         respawn()
         let picho = document.getElementById('picho');
         var endingTimer = setInterval(endScene, 40)

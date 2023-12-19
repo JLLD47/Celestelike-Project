@@ -83,18 +83,19 @@ header{
 
 #titleImg{
     position:absolute;
-    font-size: 100px;
-    width: 200px;
-    height: 50px;
-    left: 190px;
-    top: 200px;
+    width: 500px;
+    height: 146px;
+    left: 50px;
+    top: 60px;
+    background-image: url(sprites/titlePicho.png)
 }
 #newGame{
     position: absolute;
     width: 200px;
-    height: 30px;
+    height: 58px;
     left: 200px;
     top: 400px;
+    background-image: url(sprites/ngButton.png);
 }
 
 /*Level 1*/
